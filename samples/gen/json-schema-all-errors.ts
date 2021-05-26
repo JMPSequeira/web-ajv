@@ -2,7 +2,7 @@
 import { e, validatorFactory, WebAjvError, AjvValidationFn } from './web-ajv';
 export type JSONSchemaSchemaId = "JSONSchema"|"Nested"|"NestedAlternative"|"Top";
             
-const validateTop: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateTop: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -241,7 +241,7 @@ const validateTop: AjvValidationFn = (data, { instancePath = "" } = {}) => {
     validateTop.errors = vErrors.length ? vErrors : undefined;
     return errors === 0;
 };
-const validateJSONSchema: AjvValidationFn = (data, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateJSONSchema: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (!(validateTop(data, { instancePath, parentData, parentDataProperty, rootData }))) {
@@ -251,7 +251,7 @@ const validateJSONSchema: AjvValidationFn = (data, { instancePath = "", parentDa
     validateJSONSchema.errors = vErrors.length ? vErrors : undefined;
     return errors === 0;
 };
-const validateNested: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateNested: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -275,7 +275,7 @@ const validateNested: AjvValidationFn = (data, { instancePath = "" } = {}) => {
     validateNested.errors = vErrors.length ? vErrors : undefined;
     return errors === 0;
 };
-const validateNestedAlternative: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateNestedAlternative: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {

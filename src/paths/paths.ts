@@ -1,5 +1,6 @@
+const isDev = process.env["NODE_ENV"] === "development";
 const paths = {
-    webajv: process.env["NODE_ENV"] === "development" ? "./web-ajv" : "web-ajv",
+    webajv: isDev ? "./web-ajv" : "web-ajv",
 };
 
 export default paths;

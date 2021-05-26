@@ -9,7 +9,7 @@ const _constants = { schema11: { [".properties.name.type"]: ["string", "null"], 
 const formats0 = /^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const formats2 = anyfy(fullFormats)["date-time"];
 const formats4 = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
-const validateDummy: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -150,7 +150,7 @@ const validateDummy: AjvValidationFn = (data, { instancePath = "" } = {}) => {
     validateDummy.errors = vErrors.length ? vErrors : undefined;
     return errors === 0;
 };
-const validateItem: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -236,7 +236,7 @@ const validateItem: AjvValidationFn = (data, { instancePath = "" } = {}) => {
     validateItem.errors = vErrors.length ? vErrors : undefined;
     return errors === 0;
 };
-const validateNested: AsyncAjvValidationFn = async (data, { instancePath = "" } = {}) => {
+const validateNested: AsyncAjvValidationFn = async (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -273,7 +273,7 @@ const validateNested: AsyncAjvValidationFn = async (data, { instancePath = "" } 
 const formats12 = anyfy(fullFormats).int32;
 const formats14 = anyfy(fullFormats).int64;
 const formats16 = anyfy(fullFormats).double;
-const validateSample: AsyncAjvValidationFn = async (data, { instancePath = "", rootData = data } = {}) => {
+const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = "", rootData = data } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {

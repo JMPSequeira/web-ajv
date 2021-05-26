@@ -5,7 +5,7 @@ export type OpenApi2SchemaId = "ApiResponse"|"Category"|"Pet"|"Tag"|"Order"|"Use
             
 const _constants = { schema13: { [".properties.status.enum"]: ["available", "pending", "sold"] }, schema17: { [".properties.status.enum"]: ["placed", "approved", "delivered"] } };
 const formats0 = anyfy(fullFormats).int32;
-const validateApiResponse: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateApiResponse: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -44,7 +44,7 @@ const validateApiResponse: AjvValidationFn = (data, { instancePath = "" } = {}) 
     return errors === 0;
 };
 const formats2 = anyfy(fullFormats).int64;
-const validateCategory: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateCategory: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -77,7 +77,7 @@ const validateCategory: AjvValidationFn = (data, { instancePath = "" } = {}) => 
     validateCategory.errors = vErrors.length ? vErrors : undefined;
     return errors === 0;
 };
-const validatePet: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validatePet: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -208,7 +208,7 @@ const validatePet: AjvValidationFn = (data, { instancePath = "" } = {}) => {
     validatePet.errors = vErrors.length ? vErrors : undefined;
     return errors === 0;
 };
-const validateTag: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateTag: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -242,7 +242,7 @@ const validateTag: AjvValidationFn = (data, { instancePath = "" } = {}) => {
     return errors === 0;
 };
 const formats18 = anyfy(fullFormats)["date-time"];
-const validateOrder: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateOrder: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -329,7 +329,7 @@ const validateOrder: AjvValidationFn = (data, { instancePath = "" } = {}) => {
     validateOrder.errors = vErrors.length ? vErrors : undefined;
     return errors === 0;
 };
-const validateUser: AjvValidationFn = (data, { instancePath = "" } = {}) => {
+const validateUser: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {

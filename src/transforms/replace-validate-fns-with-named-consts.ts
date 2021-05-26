@@ -71,7 +71,8 @@ function updateStatements(
                 ts.isFunctionDeclaration(s) &&
                 s.name &&
                 newNames[s.name.text] &&
-                s.body
+                s.body &&
+                s.parameters[0]
             ) {
                 const isAsync = s.modifiers?.some(
                     (s) => s.kind === ts.SyntaxKind.AsyncKeyword
@@ -93,7 +94,17 @@ function updateStatements(
                                   )
                                 : undefined,
                             undefined,
-                            s.parameters,
+                            [
+                                fac.createParameterDeclaration(
+                                    undefined,
+                                    undefined,
+                                    undefined,
+                                    "data",
+                                    undefined,
+                                    getTypeNode("any")
+                                ),
+                                ...s.parameters.slice(1),
+                            ],
                             undefined,
                             undefined,
                             fac.createBlock(s.body.statements)
