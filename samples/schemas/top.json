@@ -1,0 +1,83 @@
+{
+  "$ref": "#/definitions/Top",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Nested": {
+      "additionalProperties": false,
+      "properties": {
+        "surname": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "surname"
+      ],
+      "type": "object"
+    },
+    "NestedAlternative": {
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "address"
+      ],
+      "type": "object"
+    },
+    "Top": {
+      "additionalProperties": false,
+      "properties": {
+        "age": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nested": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Nested"
+            },{
+                "type":"array",    
+            "items":{
+              "$ref": "#/definitions/NestedAlternative"
+            }
+        }
+          ]
+        },
+        "nestedAll": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/Nested"
+            },{
+                "type":"array",    
+            "items":{
+              "$ref": "#/definitions/NestedAlternative"
+            }
+        }
+          ]
+        },"nestedOne": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/Nested"
+            },{
+                "type":"array",    
+            "items":{
+              "$ref": "#/definitions/NestedAlternative"
+            }
+        }
+          ]
+        }
+
+      },
+      "required": [
+        "name",
+        "age",
+        "nested"
+      ],
+      "type": "object"
+    }
+  }
+}

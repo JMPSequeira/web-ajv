@@ -1,0 +1,6 @@
+.vscode/
+src/
+**/*.js.map
+pnpm-lock.yaml
+.eslintrc
+.gitignore
