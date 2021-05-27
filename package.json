@@ -1,6 +1,6 @@
 {
   "name": "web-ajv",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An ajv wrapper to generate a concise front-end validator.",
   "main": "./dist/index.js",
   "types": "./src/index.d.ts",
@@ -62,6 +62,7 @@
     "ajv": "^8.5.0",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^2.1.0",
-    "ajv-keywords": "^5.0.0"
+    "ajv-keywords": "^5.0.0",
+    "jquery": "^3.3.1"
   }
 }

@@ -4,3 +4,4 @@ src/
 pnpm-lock.yaml
 .eslintrc
 .gitignore
+schemas/
