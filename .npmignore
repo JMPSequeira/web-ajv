@@ -7,3 +7,6 @@ web-ajv.config.js
 **/*.tgz
 gen-validators/
 ts-config.json
+.editorconfig
+.eslintrc
+.gitignore

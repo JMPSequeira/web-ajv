@@ -1,4 +1,4 @@
-import { WebAjvError } from "./types";
+import { WebAjvError } from "../../index";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const anyfy = (u: unknown): any => u;

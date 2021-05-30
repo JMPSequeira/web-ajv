@@ -9,7 +9,7 @@ import {
     WebAjvError,
     WebAjvResult,
     WebAjvValidateFn,
-} from "./types";
+} from "../../index";
 
 export function validatorFactory<
     Key extends string,
