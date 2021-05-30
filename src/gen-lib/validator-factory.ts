@@ -1,4 +1,5 @@
 import ValidationError from "ajv/dist/runtime/validation_error";
+import { AnySchema } from "ajv";
 import {
     AjvValidationFn,
     AsyncAjvValidationFn,
@@ -14,21 +15,27 @@ export function validatorFactory<
     Key extends string,
     Async extends true | false
 >(validatorMap: ValidatorMap<Async>, async: Async): Out<Key, Async> {
-    if (async) {
-        return asyncValidatorFactory(validatorMap) as Out<Key, Async>;
-    }
+    const func = async
+        ? (asyncValidatorFactory(validatorMap as ValidatorMap<true>) as Out<
+              Key,
+              Async
+          >)
+        : (syncValidatorFactory(validatorMap as ValidatorMap<false>) as Out<
+              Key,
+              Async
+          >);
 
-    return syncValidatorFactory(validatorMap as ValidatorMap<false>) as Out<
-        Key,
-        Async
-    >;
+    func.getSchema = (key: Key) => validatorMap[key]?.schema as AnySchema;
+
+    return func;
 }
 
-function syncValidatorFactory<Key extends string>(validatorMap: {
-    [x: string]: AjvValidationFn;
-}): WebAjvValidateFn<Key> {
+function syncValidatorFactory<Key extends string>(
+    validatorMap: ValidatorMap<false>
+): Omit<WebAjvValidateFn<Key>, "getSchema"> {
     return function <T>(schemaKey: Key, instance: T) {
-        const validateFn: AjvValidationFn | undefined = validatorMap[schemaKey];
+        const validateFn: AjvValidationFn | undefined =
+            validatorMap[schemaKey]?.validator;
 
         if (!validateFn) {
             throw new Error(`No validator found for key: '${schemaKey}`);
@@ -42,12 +49,12 @@ function syncValidatorFactory<Key extends string>(validatorMap: {
     };
 }
 
-function asyncValidatorFactory<Key extends string>(validatorMap: {
-    [x: string]: AsyncAjvValidationFn | AjvValidationFn;
-}): WebAjvAsyncValidateFn<Key> {
+function asyncValidatorFactory<Key extends string>(
+    validatorMap: ValidatorMap<true>
+): Omit<WebAjvAsyncValidateFn<Key>, "getSchema"> {
     return function <T>(schemaKey: Key, instance: T): Promise<WebAjvResult<T>> {
         const validateFn: AsyncAjvValidationFn | AjvValidationFn | undefined =
-            validatorMap[schemaKey];
+            validatorMap[schemaKey]?.validator;
 
         if (!validateFn) {
             throw new Error(`No validator found for key: '${schemaKey}`);

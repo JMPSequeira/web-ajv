@@ -1,5 +1,5 @@
 {
-  "$ref": "#/definitions/Top",
+  
   "$schema": "http://json-schema.org/draft-07/schema#",
   "definitions": {
     "Nested": {
@@ -7,7 +7,15 @@
       "properties": {
         "surname": {
           "type": "string"
+        },
+        "age": {
+            "type":"number"
+        },
+        "alternatives": {
+            "type":"array",
+            "items": {"$ref": "#/definitions/NestedAlternative"}
         }
+        
       },
       "required": [
         "surname"
@@ -30,10 +38,17 @@
       "additionalProperties": false,
       "properties": {
         "age": {
-          "type": "number"
+          "type": "number",
+          "minimum": {"$data": "1/nested1/age"}
         },
         "name": {
           "type": "string"
+        },
+        "self": {
+            "$ref": "#/definitions/Top"
+        },
+        "nested1": {
+            "$ref": "#/definitions/Nested"
         },
         "nested": {
           "anyOf": [

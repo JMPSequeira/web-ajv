@@ -22,7 +22,7 @@ export const pushErrorsToVErrors = (t: TransformTraversalControl): ts.Node => {
             ts.isVariableDeclarationList(previous) &&
             statement &&
             ts.isIfStatement(statement) &&
-            statement.expression.getChildAt(0).getText() === "vErrors" &&
+            statement.expression.getChildAt(0)?.getText() === "vErrors" &&
             errorIncrement &&
             ts.isExpressionStatement(errorIncrement) &&
             ts.isPostfixUnaryExpression(errorIncrement.expression) &&

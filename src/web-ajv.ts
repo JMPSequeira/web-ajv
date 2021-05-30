@@ -27,5 +27,6 @@ void (async function run() {
         const outPath = path.join(basedir, item.outFile);
         fse.ensureDirSync(path.dirname(outPath));
         fse.writeFileSync(outPath, item.standalone);
+        fse.writeFileSync(outPath.replace(/\.ts$/, ".js"), item.original);
     });
 })();

@@ -1,13 +1,13 @@
 import { TransformTraversalControl } from "ts-morph";
 import ts from "typescript";
-import { getTypeNode, isMatchableIdentifier } from "../steps/utils";
+import { getTypeNode, isIdentifier } from "../steps/utils";
 
 const fac = ts.factory;
 const testRegex = /^validate\d+$/;
 
 let renames: { [x: string]: { newName: string; removableIndex: number } } = {};
 
-export const replaceValidateFnsWithNamedConst = function (
+export const replaceValidateFunctionsWithNamedConstants = function (
     t: TransformTraversalControl
 ): ts.Node {
     if (ts.isSourceFile(t.currentNode)) {
@@ -37,8 +37,8 @@ function getNamedDeclaration(source: ts.SourceFile) {
             ts.isExpressionStatement(s) &&
             ts.isBinaryExpression(s.expression) &&
             ts.isPropertyAccessExpression(s.expression.left) &&
-            s.expression.left.expression.getText() === "exports" &&
-            isMatchableIdentifier(s.expression.right, testRegex)
+            isIdentifier(s.expression.left.expression, "exports") &&
+            isIdentifier(s.expression.right, testRegex)
         ) {
             m[s.expression.right.text] = {
                 newName: s.expression.left.name.text,

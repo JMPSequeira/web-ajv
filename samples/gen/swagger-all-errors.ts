@@ -1,106 +1,246 @@
 /* eslint-disable */
 import { fullFormats } from "ajv-formats/dist/formats";
-import { e, validatorFactory, WebAjvError, anyfy, AjvValidationFn } from './web-ajv';
+import func0 from "ajv/dist/runtime/equal"
+import { validatorFactory, anyfy, AjvValidationFn } from './web-ajv';
 export type OpenApi2SchemaId = "ApiResponse"|"Category"|"Pet"|"Tag"|"Order"|"User";
             
-const _constants = { schema13: { [".properties.status.enum"]: ["available", "pending", "sold"] }, schema17: { [".properties.status.enum"]: ["placed", "approved", "delivered"] } };
+const schema11 = { "type": "object", "properties": { "code": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "type": { "type": "string" }, "message": { "type": "string" } }, "$id": "ApiResponse" };
 const formats0 = anyfy(fullFormats).int32;
-const validateApiResponse: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
-    let vErrors: WebAjvError[] = [];
+const validateApiResponse: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+    ;
+    let vErrors = null;
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
         if (data.code !== undefined) {
             let data0 = data.code;
             if (!(((typeof data0 == "number") && (!(data0 % 1) && !isNaN(data0))) && (isFinite(data0)))) {
-                errors = vErrors.push(e(instancePath + "/code", "#/properties/code/type", "type", { type: "integer" }));
+                const err0 = { instancePath: instancePath + "/code", schemaPath: "#/properties/code/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err0];
+                }
+                else {
+                    vErrors.push(err0);
+                }
+                errors++;
             }
             if ((typeof data0 == "number") && (isFinite(data0))) {
                 if (data0 > 2147483647 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/code", "#/properties/code/maximum", "maximum", { comparison: "<=", limit: 2147483647 }));
+                    const err1 = { instancePath: instancePath + "/code", schemaPath: "#/properties/code/maximum", keyword: "maximum", params: { comparison: "<=", limit: 2147483647 } };
+                    if (vErrors === null) {
+                        vErrors = [err1];
+                    }
+                    else {
+                        vErrors.push(err1);
+                    }
+                    errors++;
                 }
                 if (data0 < -2147483648 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/code", "#/properties/code/minimum", "minimum", { comparison: ">=", limit: -2147483648 }));
+                    const err2 = { instancePath: instancePath + "/code", schemaPath: "#/properties/code/minimum", keyword: "minimum", params: { comparison: ">=", limit: -2147483648 } };
+                    if (vErrors === null) {
+                        vErrors = [err2];
+                    }
+                    else {
+                        vErrors.push(err2);
+                    }
+                    errors++;
                 }
                 if (!(formats0.validate(data0))) {
-                    errors = vErrors.push(e(instancePath + "/code", "#/properties/code/format", "format", { format: "int32" }));
+                    const err3 = { instancePath: instancePath + "/code", schemaPath: "#/properties/code/format", keyword: "format", params: { format: "int32" } };
+                    if (vErrors === null) {
+                        vErrors = [err3];
+                    }
+                    else {
+                        vErrors.push(err3);
+                    }
+                    errors++;
                 }
             }
         }
         if (data.type !== undefined) {
             if (typeof data.type !== "string") {
-                errors = vErrors.push(e(instancePath + "/type", "#/properties/type/type", "type", { type: "string" }));
+                const err4 = { instancePath: instancePath + "/type", schemaPath: "#/properties/type/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err4];
+                }
+                else {
+                    vErrors.push(err4);
+                }
+                errors++;
             }
         }
         if (data.message !== undefined) {
             if (typeof data.message !== "string") {
-                errors = vErrors.push(e(instancePath + "/message", "#/properties/message/type", "type", { type: "string" }));
+                const err5 = { instancePath: instancePath + "/message", schemaPath: "#/properties/message/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err5];
+                }
+                else {
+                    vErrors.push(err5);
+                }
+                errors++;
             }
         }
     }
     else {
-        errors = vErrors.push(e(instancePath, "#/type", "type", { type: "object" }));
+        const err6 = { instancePath, schemaPath: "#/type", keyword: "type", params: { type: "object" } };
+        if (vErrors === null) {
+            vErrors = [err6];
+        }
+        else {
+            vErrors.push(err6);
+        }
+        errors++;
     }
-    validateApiResponse.errors = vErrors.length ? vErrors : undefined;
+    validateApiResponse.errors = vErrors;
     return errors === 0;
 };
+const schema12 = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "name": { "type": "string" } }, "$id": "Category" };
 const formats2 = anyfy(fullFormats).int64;
-const validateCategory: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
-    let vErrors: WebAjvError[] = [];
+const validateCategory: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+    ;
+    let vErrors = null;
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
         if (data.id !== undefined) {
             let data0 = data.id;
             if (!(((typeof data0 == "number") && (!(data0 % 1) && !isNaN(data0))) && (isFinite(data0)))) {
-                errors = vErrors.push(e(instancePath + "/id", "#/properties/id/type", "type", { type: "integer" }));
+                const err0 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err0];
+                }
+                else {
+                    vErrors.push(err0);
+                }
+                errors++;
             }
             if ((typeof data0 == "number") && (isFinite(data0))) {
                 if (data0 > 9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
+                    const err1 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/maximum", keyword: "maximum", params: { comparison: "<=", limit: 9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err1];
+                    }
+                    else {
+                        vErrors.push(err1);
+                    }
+                    errors++;
                 }
                 if (data0 < -9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/minimum", "minimum", { comparison: ">=", limit: -9223372036854776000 }));
+                    const err2 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/minimum", keyword: "minimum", params: { comparison: ">=", limit: -9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err2];
+                    }
+                    else {
+                        vErrors.push(err2);
+                    }
+                    errors++;
                 }
                 if (!(formats2.validate(data0))) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/format", "format", { format: "int64" }));
+                    const err3 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/format", keyword: "format", params: { format: "int64" } };
+                    if (vErrors === null) {
+                        vErrors = [err3];
+                    }
+                    else {
+                        vErrors.push(err3);
+                    }
+                    errors++;
                 }
             }
         }
         if (data.name !== undefined) {
             if (typeof data.name !== "string") {
-                errors = vErrors.push(e(instancePath + "/name", "#/properties/name/type", "type", { type: "string" }));
+                const err4 = { instancePath: instancePath + "/name", schemaPath: "#/properties/name/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err4];
+                }
+                else {
+                    vErrors.push(err4);
+                }
+                errors++;
             }
         }
     }
     else {
-        errors = vErrors.push(e(instancePath, "#/type", "type", { type: "object" }));
+        const err5 = { instancePath, schemaPath: "#/type", keyword: "type", params: { type: "object" } };
+        if (vErrors === null) {
+            vErrors = [err5];
+        }
+        else {
+            vErrors.push(err5);
+        }
+        errors++;
     }
-    validateCategory.errors = vErrors.length ? vErrors : undefined;
+    validateCategory.errors = vErrors;
     return errors === 0;
 };
-const validatePet: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
-    let vErrors: WebAjvError[] = [];
+const schema13 = { "type": "object", "required": ["name", "photoUrls"], "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "category": { "$ref": "Category" }, "name": { "type": "string" }, "photoUrls": { "type": "array", "items": { "type": "string" } }, "tags": { "type": "array", "items": { "$ref": "Tag" } }, "status": { "type": "string", "description": "pet status in the store", "enum": ["available", "pending", "sold"] } }, "$id": "Pet" };
+const schema15 = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "name": { "type": "string" } }, "$id": "Tag" };
+const validatePet: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+    ;
+    let vErrors = null;
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
         if (data.name === undefined) {
-            errors = vErrors.push(e(instancePath, "#/required", "required", { missingProperty: "name" }));
+            const err0 = { instancePath, schemaPath: "#/required", keyword: "required", params: { missingProperty: "name" } };
+            if (vErrors === null) {
+                vErrors = [err0];
+            }
+            else {
+                vErrors.push(err0);
+            }
+            errors++;
         }
         if (data.photoUrls === undefined) {
-            errors = vErrors.push(e(instancePath, "#/required", "required", { missingProperty: "photoUrls" }));
+            const err1 = { instancePath, schemaPath: "#/required", keyword: "required", params: { missingProperty: "photoUrls" } };
+            if (vErrors === null) {
+                vErrors = [err1];
+            }
+            else {
+                vErrors.push(err1);
+            }
+            errors++;
         }
         if (data.id !== undefined) {
             let data0 = data.id;
             if (!(((typeof data0 == "number") && (!(data0 % 1) && !isNaN(data0))) && (isFinite(data0)))) {
-                errors = vErrors.push(e(instancePath + "/id", "#/properties/id/type", "type", { type: "integer" }));
+                const err2 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err2];
+                }
+                else {
+                    vErrors.push(err2);
+                }
+                errors++;
             }
             if ((typeof data0 == "number") && (isFinite(data0))) {
                 if (data0 > 9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
+                    const err3 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/maximum", keyword: "maximum", params: { comparison: "<=", limit: 9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err3];
+                    }
+                    else {
+                        vErrors.push(err3);
+                    }
+                    errors++;
                 }
                 if (data0 < -9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/minimum", "minimum", { comparison: ">=", limit: -9223372036854776000 }));
+                    const err4 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/minimum", keyword: "minimum", params: { comparison: ">=", limit: -9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err4];
+                    }
+                    else {
+                        vErrors.push(err4);
+                    }
+                    errors++;
                 }
                 if (!(formats2.validate(data0))) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/format", "format", { format: "int64" }));
+                    const err5 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/format", keyword: "format", params: { format: "int64" } };
+                    if (vErrors === null) {
+                        vErrors = [err5];
+                    }
+                    else {
+                        vErrors.push(err5);
+                    }
+                    errors++;
                 }
             }
         }
@@ -110,33 +250,82 @@ const validatePet: AjvValidationFn = (data: any, { instancePath = "" } = {}) => 
                 if (data1.id !== undefined) {
                     let data2 = data1.id;
                     if (!(((typeof data2 == "number") && (!(data2 % 1) && !isNaN(data2))) && (isFinite(data2)))) {
-                        errors = vErrors.push(e(instancePath + "/category/id", "Category/properties/id/type", "type", { type: "integer" }));
+                        const err6 = { instancePath: instancePath + "/category/id", schemaPath: "Category/properties/id/type", keyword: "type", params: { type: "integer" } };
+                        if (vErrors === null) {
+                            vErrors = [err6];
+                        }
+                        else {
+                            vErrors.push(err6);
+                        }
+                        errors++;
                     }
                     if ((typeof data2 == "number") && (isFinite(data2))) {
                         if (data2 > 9223372036854776000 || isNaN(data2)) {
-                            errors = vErrors.push(e(instancePath + "/category/id", "Category/properties/id/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
+                            const err7 = { instancePath: instancePath + "/category/id", schemaPath: "Category/properties/id/maximum", keyword: "maximum", params: { comparison: "<=", limit: 9223372036854776000 } };
+                            if (vErrors === null) {
+                                vErrors = [err7];
+                            }
+                            else {
+                                vErrors.push(err7);
+                            }
+                            errors++;
                         }
                         if (data2 < -9223372036854776000 || isNaN(data2)) {
-                            errors = vErrors.push(e(instancePath + "/category/id", "Category/properties/id/minimum", "minimum", { comparison: ">=", limit: -9223372036854776000 }));
+                            const err8 = { instancePath: instancePath + "/category/id", schemaPath: "Category/properties/id/minimum", keyword: "minimum", params: { comparison: ">=", limit: -9223372036854776000 } };
+                            if (vErrors === null) {
+                                vErrors = [err8];
+                            }
+                            else {
+                                vErrors.push(err8);
+                            }
+                            errors++;
                         }
                         if (!(formats2.validate(data2))) {
-                            errors = vErrors.push(e(instancePath + "/category/id", "Category/properties/id/format", "format", { format: "int64" }));
+                            const err9 = { instancePath: instancePath + "/category/id", schemaPath: "Category/properties/id/format", keyword: "format", params: { format: "int64" } };
+                            if (vErrors === null) {
+                                vErrors = [err9];
+                            }
+                            else {
+                                vErrors.push(err9);
+                            }
+                            errors++;
                         }
                     }
                 }
                 if (data1.name !== undefined) {
                     if (typeof data1.name !== "string") {
-                        errors = vErrors.push(e(instancePath + "/category/name", "Category/properties/name/type", "type", { type: "string" }));
+                        const err10 = { instancePath: instancePath + "/category/name", schemaPath: "Category/properties/name/type", keyword: "type", params: { type: "string" } };
+                        if (vErrors === null) {
+                            vErrors = [err10];
+                        }
+                        else {
+                            vErrors.push(err10);
+                        }
+                        errors++;
                     }
                 }
             }
             else {
-                errors = vErrors.push(e(instancePath + "/category", "Category/type", "type", { type: "object" }));
+                const err11 = { instancePath: instancePath + "/category", schemaPath: "Category/type", keyword: "type", params: { type: "object" } };
+                if (vErrors === null) {
+                    vErrors = [err11];
+                }
+                else {
+                    vErrors.push(err11);
+                }
+                errors++;
             }
         }
         if (data.name !== undefined) {
             if (typeof data.name !== "string") {
-                errors = vErrors.push(e(instancePath + "/name", "#/properties/name/type", "type", { type: "string" }));
+                const err12 = { instancePath: instancePath + "/name", schemaPath: "#/properties/name/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err12];
+                }
+                else {
+                    vErrors.push(err12);
+                }
+                errors++;
             }
         }
         if (data.photoUrls !== undefined) {
@@ -145,12 +334,26 @@ const validatePet: AjvValidationFn = (data: any, { instancePath = "" } = {}) => 
                 const len0 = data5.length;
                 for (let i0 = 0; i0 < len0; i0++) {
                     if (typeof data5[i0] !== "string") {
-                        errors = vErrors.push(e(instancePath + "/photoUrls/" + i0, "#/properties/photoUrls/items/type", "type", { type: "string" }));
+                        const err13 = { instancePath: instancePath + "/photoUrls/" + i0, schemaPath: "#/properties/photoUrls/items/type", keyword: "type", params: { type: "string" } };
+                        if (vErrors === null) {
+                            vErrors = [err13];
+                        }
+                        else {
+                            vErrors.push(err13);
+                        }
+                        errors++;
                     }
                 }
             }
             else {
-                errors = vErrors.push(e(instancePath + "/photoUrls", "#/properties/photoUrls/type", "type", { type: "array" }));
+                const err14 = { instancePath: instancePath + "/photoUrls", schemaPath: "#/properties/photoUrls/type", keyword: "type", params: { type: "array" } };
+                if (vErrors === null) {
+                    vErrors = [err14];
+                }
+                else {
+                    vErrors.push(err14);
+                }
+                errors++;
             }
         }
         if (data.tags !== undefined) {
@@ -163,137 +366,336 @@ const validatePet: AjvValidationFn = (data: any, { instancePath = "" } = {}) => 
                         if (data8.id !== undefined) {
                             let data9 = data8.id;
                             if (!(((typeof data9 == "number") && (!(data9 % 1) && !isNaN(data9))) && (isFinite(data9)))) {
-                                errors = vErrors.push(e(instancePath + "/tags/" + i1 + "/id", "Tag/properties/id/type", "type", { type: "integer" }));
+                                const err15 = { instancePath: instancePath + "/tags/" + i1 + "/id", schemaPath: "Tag/properties/id/type", keyword: "type", params: { type: "integer" } };
+                                if (vErrors === null) {
+                                    vErrors = [err15];
+                                }
+                                else {
+                                    vErrors.push(err15);
+                                }
+                                errors++;
                             }
                             if ((typeof data9 == "number") && (isFinite(data9))) {
                                 if (data9 > 9223372036854776000 || isNaN(data9)) {
-                                    errors = vErrors.push(e(instancePath + "/tags/" + i1 + "/id", "Tag/properties/id/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
+                                    const err16 = { instancePath: instancePath + "/tags/" + i1 + "/id", schemaPath: "Tag/properties/id/maximum", keyword: "maximum", params: { comparison: "<=", limit: 9223372036854776000 } };
+                                    if (vErrors === null) {
+                                        vErrors = [err16];
+                                    }
+                                    else {
+                                        vErrors.push(err16);
+                                    }
+                                    errors++;
                                 }
                                 if (data9 < -9223372036854776000 || isNaN(data9)) {
-                                    errors = vErrors.push(e(instancePath + "/tags/" + i1 + "/id", "Tag/properties/id/minimum", "minimum", { comparison: ">=", limit: -9223372036854776000 }));
+                                    const err17 = { instancePath: instancePath + "/tags/" + i1 + "/id", schemaPath: "Tag/properties/id/minimum", keyword: "minimum", params: { comparison: ">=", limit: -9223372036854776000 } };
+                                    if (vErrors === null) {
+                                        vErrors = [err17];
+                                    }
+                                    else {
+                                        vErrors.push(err17);
+                                    }
+                                    errors++;
                                 }
                                 if (!(formats2.validate(data9))) {
-                                    errors = vErrors.push(e(instancePath + "/tags/" + i1 + "/id", "Tag/properties/id/format", "format", { format: "int64" }));
+                                    const err18 = { instancePath: instancePath + "/tags/" + i1 + "/id", schemaPath: "Tag/properties/id/format", keyword: "format", params: { format: "int64" } };
+                                    if (vErrors === null) {
+                                        vErrors = [err18];
+                                    }
+                                    else {
+                                        vErrors.push(err18);
+                                    }
+                                    errors++;
                                 }
                             }
                         }
                         if (data8.name !== undefined) {
                             if (typeof data8.name !== "string") {
-                                errors = vErrors.push(e(instancePath + "/tags/" + i1 + "/name", "Tag/properties/name/type", "type", { type: "string" }));
+                                const err19 = { instancePath: instancePath + "/tags/" + i1 + "/name", schemaPath: "Tag/properties/name/type", keyword: "type", params: { type: "string" } };
+                                if (vErrors === null) {
+                                    vErrors = [err19];
+                                }
+                                else {
+                                    vErrors.push(err19);
+                                }
+                                errors++;
                             }
                         }
                     }
                     else {
-                        errors = vErrors.push(e(instancePath + "/tags/" + i1, "Tag/type", "type", { type: "object" }));
+                        const err20 = { instancePath: instancePath + "/tags/" + i1, schemaPath: "Tag/type", keyword: "type", params: { type: "object" } };
+                        if (vErrors === null) {
+                            vErrors = [err20];
+                        }
+                        else {
+                            vErrors.push(err20);
+                        }
+                        errors++;
                     }
                 }
             }
             else {
-                errors = vErrors.push(e(instancePath + "/tags", "#/properties/tags/type", "type", { type: "array" }));
+                const err21 = { instancePath: instancePath + "/tags", schemaPath: "#/properties/tags/type", keyword: "type", params: { type: "array" } };
+                if (vErrors === null) {
+                    vErrors = [err21];
+                }
+                else {
+                    vErrors.push(err21);
+                }
+                errors++;
             }
         }
         if (data.status !== undefined) {
             let data11 = data.status;
             if (typeof data11 !== "string") {
-                errors = vErrors.push(e(instancePath + "/status", "#/properties/status/type", "type", { type: "string" }));
+                const err22 = { instancePath: instancePath + "/status", schemaPath: "#/properties/status/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err22];
+                }
+                else {
+                    vErrors.push(err22);
+                }
+                errors++;
             }
             if (!(((data11 === "available") || (data11 === "pending")) || (data11 === "sold"))) {
-                errors = vErrors.push(e(instancePath + "/status", "#/properties/status/enum", "enum", { allowedValues: _constants.schema13[".properties.status.enum"] }));
+                const err23 = { instancePath: instancePath + "/status", schemaPath: "#/properties/status/enum", keyword: "enum", params: { allowedValues: schema13.properties.status.enum } };
+                if (vErrors === null) {
+                    vErrors = [err23];
+                }
+                else {
+                    vErrors.push(err23);
+                }
+                errors++;
             }
         }
     }
     else {
-        errors = vErrors.push(e(instancePath, "#/type", "type", { type: "object" }));
+        const err24 = { instancePath, schemaPath: "#/type", keyword: "type", params: { type: "object" } };
+        if (vErrors === null) {
+            vErrors = [err24];
+        }
+        else {
+            vErrors.push(err24);
+        }
+        errors++;
     }
-    validatePet.errors = vErrors.length ? vErrors : undefined;
+    validatePet.errors = vErrors;
     return errors === 0;
 };
-const validateTag: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
-    let vErrors: WebAjvError[] = [];
+const validateTag: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+    ;
+    let vErrors = null;
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
         if (data.id !== undefined) {
             let data0 = data.id;
             if (!(((typeof data0 == "number") && (!(data0 % 1) && !isNaN(data0))) && (isFinite(data0)))) {
-                errors = vErrors.push(e(instancePath + "/id", "#/properties/id/type", "type", { type: "integer" }));
+                const err0 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err0];
+                }
+                else {
+                    vErrors.push(err0);
+                }
+                errors++;
             }
             if ((typeof data0 == "number") && (isFinite(data0))) {
                 if (data0 > 9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
+                    const err1 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/maximum", keyword: "maximum", params: { comparison: "<=", limit: 9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err1];
+                    }
+                    else {
+                        vErrors.push(err1);
+                    }
+                    errors++;
                 }
                 if (data0 < -9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/minimum", "minimum", { comparison: ">=", limit: -9223372036854776000 }));
+                    const err2 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/minimum", keyword: "minimum", params: { comparison: ">=", limit: -9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err2];
+                    }
+                    else {
+                        vErrors.push(err2);
+                    }
+                    errors++;
                 }
                 if (!(formats2.validate(data0))) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/format", "format", { format: "int64" }));
+                    const err3 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/format", keyword: "format", params: { format: "int64" } };
+                    if (vErrors === null) {
+                        vErrors = [err3];
+                    }
+                    else {
+                        vErrors.push(err3);
+                    }
+                    errors++;
                 }
             }
         }
         if (data.name !== undefined) {
             if (typeof data.name !== "string") {
-                errors = vErrors.push(e(instancePath + "/name", "#/properties/name/type", "type", { type: "string" }));
+                const err4 = { instancePath: instancePath + "/name", schemaPath: "#/properties/name/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err4];
+                }
+                else {
+                    vErrors.push(err4);
+                }
+                errors++;
             }
         }
     }
     else {
-        errors = vErrors.push(e(instancePath, "#/type", "type", { type: "object" }));
+        const err5 = { instancePath, schemaPath: "#/type", keyword: "type", params: { type: "object" } };
+        if (vErrors === null) {
+            vErrors = [err5];
+        }
+        else {
+            vErrors.push(err5);
+        }
+        errors++;
     }
-    validateTag.errors = vErrors.length ? vErrors : undefined;
+    validateTag.errors = vErrors;
     return errors === 0;
 };
+const schema17 = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "petId": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "quantity": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "shipDate": { "type": "string", "format": "date-time" }, "status": { "type": "string", "description": "Order Status", "enum": ["placed", "approved", "delivered"] }, "complete": { "type": "boolean" } }, "$id": "Order" };
 const formats18 = anyfy(fullFormats)["date-time"];
-const validateOrder: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
-    let vErrors: WebAjvError[] = [];
+const validateOrder: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+    ;
+    let vErrors = null;
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
         if (data.id !== undefined) {
             let data0 = data.id;
             if (!(((typeof data0 == "number") && (!(data0 % 1) && !isNaN(data0))) && (isFinite(data0)))) {
-                errors = vErrors.push(e(instancePath + "/id", "#/properties/id/type", "type", { type: "integer" }));
+                const err0 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err0];
+                }
+                else {
+                    vErrors.push(err0);
+                }
+                errors++;
             }
             if ((typeof data0 == "number") && (isFinite(data0))) {
                 if (data0 > 9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
+                    const err1 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/maximum", keyword: "maximum", params: { comparison: "<=", limit: 9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err1];
+                    }
+                    else {
+                        vErrors.push(err1);
+                    }
+                    errors++;
                 }
                 if (data0 < -9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/minimum", "minimum", { comparison: ">=", limit: -9223372036854776000 }));
+                    const err2 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/minimum", keyword: "minimum", params: { comparison: ">=", limit: -9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err2];
+                    }
+                    else {
+                        vErrors.push(err2);
+                    }
+                    errors++;
                 }
                 if (!(formats2.validate(data0))) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/format", "format", { format: "int64" }));
+                    const err3 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/format", keyword: "format", params: { format: "int64" } };
+                    if (vErrors === null) {
+                        vErrors = [err3];
+                    }
+                    else {
+                        vErrors.push(err3);
+                    }
+                    errors++;
                 }
             }
         }
         if (data.petId !== undefined) {
             let data1 = data.petId;
             if (!(((typeof data1 == "number") && (!(data1 % 1) && !isNaN(data1))) && (isFinite(data1)))) {
-                errors = vErrors.push(e(instancePath + "/petId", "#/properties/petId/type", "type", { type: "integer" }));
+                const err4 = { instancePath: instancePath + "/petId", schemaPath: "#/properties/petId/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err4];
+                }
+                else {
+                    vErrors.push(err4);
+                }
+                errors++;
             }
             if ((typeof data1 == "number") && (isFinite(data1))) {
                 if (data1 > 9223372036854776000 || isNaN(data1)) {
-                    errors = vErrors.push(e(instancePath + "/petId", "#/properties/petId/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
+                    const err5 = { instancePath: instancePath + "/petId", schemaPath: "#/properties/petId/maximum", keyword: "maximum", params: { comparison: "<=", limit: 9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err5];
+                    }
+                    else {
+                        vErrors.push(err5);
+                    }
+                    errors++;
                 }
                 if (data1 < -9223372036854776000 || isNaN(data1)) {
-                    errors = vErrors.push(e(instancePath + "/petId", "#/properties/petId/minimum", "minimum", { comparison: ">=", limit: -9223372036854776000 }));
+                    const err6 = { instancePath: instancePath + "/petId", schemaPath: "#/properties/petId/minimum", keyword: "minimum", params: { comparison: ">=", limit: -9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err6];
+                    }
+                    else {
+                        vErrors.push(err6);
+                    }
+                    errors++;
                 }
                 if (!(formats2.validate(data1))) {
-                    errors = vErrors.push(e(instancePath + "/petId", "#/properties/petId/format", "format", { format: "int64" }));
+                    const err7 = { instancePath: instancePath + "/petId", schemaPath: "#/properties/petId/format", keyword: "format", params: { format: "int64" } };
+                    if (vErrors === null) {
+                        vErrors = [err7];
+                    }
+                    else {
+                        vErrors.push(err7);
+                    }
+                    errors++;
                 }
             }
         }
         if (data.quantity !== undefined) {
             let data2 = data.quantity;
             if (!(((typeof data2 == "number") && (!(data2 % 1) && !isNaN(data2))) && (isFinite(data2)))) {
-                errors = vErrors.push(e(instancePath + "/quantity", "#/properties/quantity/type", "type", { type: "integer" }));
+                const err8 = { instancePath: instancePath + "/quantity", schemaPath: "#/properties/quantity/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err8];
+                }
+                else {
+                    vErrors.push(err8);
+                }
+                errors++;
             }
             if ((typeof data2 == "number") && (isFinite(data2))) {
                 if (data2 > 2147483647 || isNaN(data2)) {
-                    errors = vErrors.push(e(instancePath + "/quantity", "#/properties/quantity/maximum", "maximum", { comparison: "<=", limit: 2147483647 }));
+                    const err9 = { instancePath: instancePath + "/quantity", schemaPath: "#/properties/quantity/maximum", keyword: "maximum", params: { comparison: "<=", limit: 2147483647 } };
+                    if (vErrors === null) {
+                        vErrors = [err9];
+                    }
+                    else {
+                        vErrors.push(err9);
+                    }
+                    errors++;
                 }
                 if (data2 < -2147483648 || isNaN(data2)) {
-                    errors = vErrors.push(e(instancePath + "/quantity", "#/properties/quantity/minimum", "minimum", { comparison: ">=", limit: -2147483648 }));
+                    const err10 = { instancePath: instancePath + "/quantity", schemaPath: "#/properties/quantity/minimum", keyword: "minimum", params: { comparison: ">=", limit: -2147483648 } };
+                    if (vErrors === null) {
+                        vErrors = [err10];
+                    }
+                    else {
+                        vErrors.push(err10);
+                    }
+                    errors++;
                 }
                 if (!(formats0.validate(data2))) {
-                    errors = vErrors.push(e(instancePath + "/quantity", "#/properties/quantity/format", "format", { format: "int32" }));
+                    const err11 = { instancePath: instancePath + "/quantity", schemaPath: "#/properties/quantity/format", keyword: "format", params: { format: "int32" } };
+                    if (vErrors === null) {
+                        vErrors = [err11];
+                    }
+                    else {
+                        vErrors.push(err11);
+                    }
+                    errors++;
                 }
             }
         }
@@ -301,107 +703,256 @@ const validateOrder: AjvValidationFn = (data: any, { instancePath = "" } = {}) =
             let data3 = data.shipDate;
             if (typeof data3 === "string") {
                 if (!(formats18.validate(data3))) {
-                    errors = vErrors.push(e(instancePath + "/shipDate", "#/properties/shipDate/format", "format", { format: "date-time" }));
+                    const err12 = { instancePath: instancePath + "/shipDate", schemaPath: "#/properties/shipDate/format", keyword: "format", params: { format: "date-time" } };
+                    if (vErrors === null) {
+                        vErrors = [err12];
+                    }
+                    else {
+                        vErrors.push(err12);
+                    }
+                    errors++;
                 }
             }
             else {
-                errors = vErrors.push(e(instancePath + "/shipDate", "#/properties/shipDate/type", "type", { type: "string" }));
+                const err13 = { instancePath: instancePath + "/shipDate", schemaPath: "#/properties/shipDate/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err13];
+                }
+                else {
+                    vErrors.push(err13);
+                }
+                errors++;
             }
         }
         if (data.status !== undefined) {
             let data4 = data.status;
             if (typeof data4 !== "string") {
-                errors = vErrors.push(e(instancePath + "/status", "#/properties/status/type", "type", { type: "string" }));
+                const err14 = { instancePath: instancePath + "/status", schemaPath: "#/properties/status/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err14];
+                }
+                else {
+                    vErrors.push(err14);
+                }
+                errors++;
             }
             if (!(((data4 === "placed") || (data4 === "approved")) || (data4 === "delivered"))) {
-                errors = vErrors.push(e(instancePath + "/status", "#/properties/status/enum", "enum", { allowedValues: _constants.schema17[".properties.status.enum"] }));
+                const err15 = { instancePath: instancePath + "/status", schemaPath: "#/properties/status/enum", keyword: "enum", params: { allowedValues: schema17.properties.status.enum } };
+                if (vErrors === null) {
+                    vErrors = [err15];
+                }
+                else {
+                    vErrors.push(err15);
+                }
+                errors++;
             }
         }
         if (data.complete !== undefined) {
             if (typeof data.complete !== "boolean") {
-                errors = vErrors.push(e(instancePath + "/complete", "#/properties/complete/type", "type", { type: "boolean" }));
+                const err16 = { instancePath: instancePath + "/complete", schemaPath: "#/properties/complete/type", keyword: "type", params: { type: "boolean" } };
+                if (vErrors === null) {
+                    vErrors = [err16];
+                }
+                else {
+                    vErrors.push(err16);
+                }
+                errors++;
             }
         }
     }
     else {
-        errors = vErrors.push(e(instancePath, "#/type", "type", { type: "object" }));
+        const err17 = { instancePath, schemaPath: "#/type", keyword: "type", params: { type: "object" } };
+        if (vErrors === null) {
+            vErrors = [err17];
+        }
+        else {
+            vErrors.push(err17);
+        }
+        errors++;
     }
-    validateOrder.errors = vErrors.length ? vErrors : undefined;
+    validateOrder.errors = vErrors;
     return errors === 0;
 };
-const validateUser: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
-    let vErrors: WebAjvError[] = [];
+const schema18 = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "username": { "type": "string" }, "firstName": { "type": "string" }, "lastName": { "type": "string" }, "email": { "type": "string" }, "password": { "type": "string" }, "phone": { "type": "string" }, "userStatus": { "type": "integer", "format": "int32", "description": "User Status", "minimum": -2147483648, "maximum": 2147483647 } }, "$id": "User" };
+const validateUser: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+    ;
+    let vErrors = null;
     let errors = 0;
     if (data && typeof data == "object" && !Array.isArray(data)) {
         if (data.id !== undefined) {
             let data0 = data.id;
             if (!(((typeof data0 == "number") && (!(data0 % 1) && !isNaN(data0))) && (isFinite(data0)))) {
-                errors = vErrors.push(e(instancePath + "/id", "#/properties/id/type", "type", { type: "integer" }));
+                const err0 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err0];
+                }
+                else {
+                    vErrors.push(err0);
+                }
+                errors++;
             }
             if ((typeof data0 == "number") && (isFinite(data0))) {
                 if (data0 > 9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
+                    const err1 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/maximum", keyword: "maximum", params: { comparison: "<=", limit: 9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err1];
+                    }
+                    else {
+                        vErrors.push(err1);
+                    }
+                    errors++;
                 }
                 if (data0 < -9223372036854776000 || isNaN(data0)) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/minimum", "minimum", { comparison: ">=", limit: -9223372036854776000 }));
+                    const err2 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/minimum", keyword: "minimum", params: { comparison: ">=", limit: -9223372036854776000 } };
+                    if (vErrors === null) {
+                        vErrors = [err2];
+                    }
+                    else {
+                        vErrors.push(err2);
+                    }
+                    errors++;
                 }
                 if (!(formats2.validate(data0))) {
-                    errors = vErrors.push(e(instancePath + "/id", "#/properties/id/format", "format", { format: "int64" }));
+                    const err3 = { instancePath: instancePath + "/id", schemaPath: "#/properties/id/format", keyword: "format", params: { format: "int64" } };
+                    if (vErrors === null) {
+                        vErrors = [err3];
+                    }
+                    else {
+                        vErrors.push(err3);
+                    }
+                    errors++;
                 }
             }
         }
         if (data.username !== undefined) {
             if (typeof data.username !== "string") {
-                errors = vErrors.push(e(instancePath + "/username", "#/properties/username/type", "type", { type: "string" }));
+                const err4 = { instancePath: instancePath + "/username", schemaPath: "#/properties/username/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err4];
+                }
+                else {
+                    vErrors.push(err4);
+                }
+                errors++;
             }
         }
         if (data.firstName !== undefined) {
             if (typeof data.firstName !== "string") {
-                errors = vErrors.push(e(instancePath + "/firstName", "#/properties/firstName/type", "type", { type: "string" }));
+                const err5 = { instancePath: instancePath + "/firstName", schemaPath: "#/properties/firstName/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err5];
+                }
+                else {
+                    vErrors.push(err5);
+                }
+                errors++;
             }
         }
         if (data.lastName !== undefined) {
             if (typeof data.lastName !== "string") {
-                errors = vErrors.push(e(instancePath + "/lastName", "#/properties/lastName/type", "type", { type: "string" }));
+                const err6 = { instancePath: instancePath + "/lastName", schemaPath: "#/properties/lastName/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err6];
+                }
+                else {
+                    vErrors.push(err6);
+                }
+                errors++;
             }
         }
         if (data.email !== undefined) {
             if (typeof data.email !== "string") {
-                errors = vErrors.push(e(instancePath + "/email", "#/properties/email/type", "type", { type: "string" }));
+                const err7 = { instancePath: instancePath + "/email", schemaPath: "#/properties/email/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err7];
+                }
+                else {
+                    vErrors.push(err7);
+                }
+                errors++;
             }
         }
         if (data.password !== undefined) {
             if (typeof data.password !== "string") {
-                errors = vErrors.push(e(instancePath + "/password", "#/properties/password/type", "type", { type: "string" }));
+                const err8 = { instancePath: instancePath + "/password", schemaPath: "#/properties/password/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err8];
+                }
+                else {
+                    vErrors.push(err8);
+                }
+                errors++;
             }
         }
         if (data.phone !== undefined) {
             if (typeof data.phone !== "string") {
-                errors = vErrors.push(e(instancePath + "/phone", "#/properties/phone/type", "type", { type: "string" }));
+                const err9 = { instancePath: instancePath + "/phone", schemaPath: "#/properties/phone/type", keyword: "type", params: { type: "string" } };
+                if (vErrors === null) {
+                    vErrors = [err9];
+                }
+                else {
+                    vErrors.push(err9);
+                }
+                errors++;
             }
         }
         if (data.userStatus !== undefined) {
             let data7 = data.userStatus;
             if (!(((typeof data7 == "number") && (!(data7 % 1) && !isNaN(data7))) && (isFinite(data7)))) {
-                errors = vErrors.push(e(instancePath + "/userStatus", "#/properties/userStatus/type", "type", { type: "integer" }));
+                const err10 = { instancePath: instancePath + "/userStatus", schemaPath: "#/properties/userStatus/type", keyword: "type", params: { type: "integer" } };
+                if (vErrors === null) {
+                    vErrors = [err10];
+                }
+                else {
+                    vErrors.push(err10);
+                }
+                errors++;
             }
             if ((typeof data7 == "number") && (isFinite(data7))) {
                 if (data7 > 2147483647 || isNaN(data7)) {
-                    errors = vErrors.push(e(instancePath + "/userStatus", "#/properties/userStatus/maximum", "maximum", { comparison: "<=", limit: 2147483647 }));
+                    const err11 = { instancePath: instancePath + "/userStatus", schemaPath: "#/properties/userStatus/maximum", keyword: "maximum", params: { comparison: "<=", limit: 2147483647 } };
+                    if (vErrors === null) {
+                        vErrors = [err11];
+                    }
+                    else {
+                        vErrors.push(err11);
+                    }
+                    errors++;
                 }
                 if (data7 < -2147483648 || isNaN(data7)) {
-                    errors = vErrors.push(e(instancePath + "/userStatus", "#/properties/userStatus/minimum", "minimum", { comparison: ">=", limit: -2147483648 }));
+                    const err12 = { instancePath: instancePath + "/userStatus", schemaPath: "#/properties/userStatus/minimum", keyword: "minimum", params: { comparison: ">=", limit: -2147483648 } };
+                    if (vErrors === null) {
+                        vErrors = [err12];
+                    }
+                    else {
+                        vErrors.push(err12);
+                    }
+                    errors++;
                 }
                 if (!(formats0.validate(data7))) {
-                    errors = vErrors.push(e(instancePath + "/userStatus", "#/properties/userStatus/format", "format", { format: "int32" }));
+                    const err13 = { instancePath: instancePath + "/userStatus", schemaPath: "#/properties/userStatus/format", keyword: "format", params: { format: "int32" } };
+                    if (vErrors === null) {
+                        vErrors = [err13];
+                    }
+                    else {
+                        vErrors.push(err13);
+                    }
+                    errors++;
                 }
             }
         }
     }
     else {
-        errors = vErrors.push(e(instancePath, "#/type", "type", { type: "object" }));
+        const err14 = { instancePath, schemaPath: "#/type", keyword: "type", params: { type: "object" } };
+        if (vErrors === null) {
+            vErrors = [err14];
+        }
+        else {
+            vErrors.push(err14);
+        }
+        errors++;
     }
-    validateUser.errors = vErrors.length ? vErrors : undefined;
+    validateUser.errors = vErrors;
     return errors === 0;
 };
 

@@ -134,16 +134,13 @@ export function getTypeNode(typeStr: string): ts.TypeNode | undefined {
 
 export function isIdentifier<T>(
     node: ts.Node,
-    text: T extends string ? T : never
-): node is ts.Identifier & { text: T } {
-    return ts.isIdentifier(node) && node.text === text;
-}
-
-export function isMatchableIdentifier(
-    node: ts.Node,
-    regexp: RegExp
-): node is ts.Identifier {
-    return ts.isIdentifier(node) && regexp.test(node.text);
+    text: T extends string ? T : T extends RegExp ? T : never
+): node is ts.Identifier & { text: T extends string ? T : string } {
+    return (
+        ts.isIdentifier(node) &&
+        ((typeof text === "string" && node.text === text) ||
+            (text instanceof RegExp && text.test(node.text)))
+    );
 }
 
 export function isSingleVariableDeclaration(
@@ -169,4 +166,34 @@ export function createSafeVErrors() {
             ts.factory.createArrayLiteralExpression()
         )
     );
+}
+
+export function isVariableStatement<T>(
+    node: ts.Node | undefined,
+    test: T extends string ? T : T extends RegExp ? T : never
+): node is ts.VariableDeclaration & {
+    declarationList: {
+        declarations: {
+            [0]: ts.VariableDeclaration & {
+                name: {
+                    text: T extends string ? T : string;
+                };
+            };
+        };
+    };
+} {
+    if (node && ts.isVariableStatement(node)) {
+        const declaration = node.declarationList.declarations[0];
+        if (declaration) {
+            if (test) {
+                const name = declaration.name.getText();
+                if (typeof test === "string" && name === test) {
+                    return true;
+                } else if (test instanceof RegExp && test.test(name)) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }

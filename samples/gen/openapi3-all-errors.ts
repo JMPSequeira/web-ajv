@@ -5,6 +5,12 @@ import func4 from "ajv/dist/runtime/ucs2length"
 import { e, validatorFactory, WebAjvError, anyfy, AsyncAjvValidationFn, AjvValidationFn } from './web-ajv';
 export type OpenApi3SchemaId = "Dummy"|"Item"|"Nested"|"Sample";
             
+const isUndefined= (v: unknown): v is undefined => v === undefined;
+const isNull= (v: unknown): v is null => v === null;
+const isStr= (v: unknown): v is string => typeof v === "string";
+const isObj= (v: unknown): v is any => !!v && typeof v === "object" && !Array.isArray(v);
+const isNum= (v: unknown): v is number => typeof v === "number";
+const isArr= Array.isArray
 const _constants = { schema11: { [".properties.name.type"]: ["string", "null"], [".properties.items.type"]: ["array", "null"] }, schema14: { [".properties.age.type"]: ["string", "null"] } };
 const formats0 = /^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const formats2 = anyfy(fullFormats)["date-time"];
@@ -12,28 +18,28 @@ const formats4 = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+
 const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
-    if (data && typeof data == "object" && !Array.isArray(data)) {
+    if (isObj(data)) {
         for (const key0 in data) {
             if (!((key0 === "name") || (key0 === "items"))) {
                 errors = vErrors.push(e(instancePath, "#/additionalProperties", "additionalProperties", { additionalProperty: key0 }));
             }
         }
-        if (data.name !== undefined) {
+        if (!isUndefined(data.name)) {
             let data0 = data.name;
-            if ((typeof data0 !== "string") && (data0 !== null)) {
+            if ((isStr(data0)) && (!isNull(data0))) {
                 errors = vErrors.push(e(instancePath + "/name", "#/properties/name/type", "type", { type: _constants.schema11[".properties.name.type"] }));
             }
         }
-        if (data.items !== undefined) {
+        if (!isUndefined(data.items)) {
             let data1 = data.items;
-            if ((!(Array.isArray(data1))) && (data1 !== null)) {
+            if ((!(isArr(data1))) && (!isNull(data1))) {
                 errors = vErrors.push(e(instancePath + "/items", "#/properties/items/type", "type", { type: _constants.schema11[".properties.items.type"] }));
             }
-            if (Array.isArray(data1)) {
+            if (isArr(data1)) {
                 const len0 = data1.length;
                 for (let i0 = 0; i0 < len0; i0++) {
                     let data2 = data1[i0];
-                    if (data2 && typeof data2 == "object" && !Array.isArray(data2)) {
+                    if (isObj(data2)) {
                         if (data2.deliveredOn === undefined) {
                             errors = vErrors.push(e(instancePath + "/items/" + i0, "Item/required", "required", { missingProperty: "deliveredOn" }));
                         }
@@ -48,9 +54,9 @@ const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) =
                                 errors = vErrors.push(e(instancePath + "/items/" + i0, "Item/additionalProperties", "additionalProperties", { additionalProperty: key1 }));
                             }
                         }
-                        if (data2.id !== undefined) {
+                        if (!isUndefined(data2.id)) {
                             let data3 = data2.id;
-                            if (typeof data3 === "string") {
+                            if (isStr(data3)) {
                                 if (!(formats0.test(data3))) {
                                     errors = vErrors.push(e(instancePath + "/items/" + i0 + "/id", "Item/properties/id/format", "format", { format: "uuid" }));
                                 }
@@ -59,9 +65,9 @@ const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) =
                                 errors = vErrors.push(e(instancePath + "/items/" + i0 + "/id", "Item/properties/id/type", "type", { type: "string" }));
                             }
                         }
-                        if (data2.deliveredOn !== undefined) {
+                        if (!isUndefined(data2.deliveredOn)) {
                             let data4 = data2.deliveredOn;
-                            if (typeof data4 === "string") {
+                            if (isStr(data4)) {
                                 if (!(formats2.validate(data4))) {
                                     errors = vErrors.push(e(instancePath + "/items/" + i0 + "/deliveredOn", "Item/properties/deliveredOn/format", "format", { format: "date-time" }));
                                 }
@@ -70,9 +76,9 @@ const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) =
                                 errors = vErrors.push(e(instancePath + "/items/" + i0 + "/deliveredOn", "Item/properties/deliveredOn/type", "type", { type: "string" }));
                             }
                         }
-                        if (data2.emailAddress !== undefined) {
+                        if (!isUndefined(data2.emailAddress)) {
                             let data5 = data2.emailAddress;
-                            if (typeof data5 === "string") {
+                            if (isStr(data5)) {
                                 if (!(formats4.test(data5))) {
                                     errors = vErrors.push(e(instancePath + "/items/" + i0 + "/emailAddress", "Item/properties/emailAddress/format", "format", { format: "email" }));
                                 }
@@ -98,7 +104,7 @@ const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) =
 const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
-    if (data && typeof data == "object" && !Array.isArray(data)) {
+    if (isObj(data)) {
         if (data.deliveredOn === undefined) {
             errors = vErrors.push(e(instancePath, "#/required", "required", { missingProperty: "deliveredOn" }));
         }
@@ -113,9 +119,9 @@ const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) =>
                 errors = vErrors.push(e(instancePath, "#/additionalProperties", "additionalProperties", { additionalProperty: key0 }));
             }
         }
-        if (data.id !== undefined) {
+        if (!isUndefined(data.id)) {
             let data0 = data.id;
-            if (typeof data0 === "string") {
+            if (isStr(data0)) {
                 if (!(formats0.test(data0))) {
                     errors = vErrors.push(e(instancePath + "/id", "#/properties/id/format", "format", { format: "uuid" }));
                 }
@@ -124,9 +130,9 @@ const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) =>
                 errors = vErrors.push(e(instancePath + "/id", "#/properties/id/type", "type", { type: "string" }));
             }
         }
-        if (data.deliveredOn !== undefined) {
+        if (!isUndefined(data.deliveredOn)) {
             let data1 = data.deliveredOn;
-            if (typeof data1 === "string") {
+            if (isStr(data1)) {
                 if (!(formats2.validate(data1))) {
                     errors = vErrors.push(e(instancePath + "/deliveredOn", "#/properties/deliveredOn/format", "format", { format: "date-time" }));
                 }
@@ -135,9 +141,9 @@ const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) =>
                 errors = vErrors.push(e(instancePath + "/deliveredOn", "#/properties/deliveredOn/type", "type", { type: "string" }));
             }
         }
-        if (data.emailAddress !== undefined) {
+        if (!isUndefined(data.emailAddress)) {
             let data2 = data.emailAddress;
-            if (typeof data2 === "string") {
+            if (isStr(data2)) {
                 if (!(formats4.test(data2))) {
                     errors = vErrors.push(e(instancePath + "/emailAddress", "#/properties/emailAddress/format", "format", { format: "email" }));
                 }
@@ -156,15 +162,15 @@ const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) =>
 const validateNested: AsyncAjvValidationFn = async (data: any, { instancePath = "" } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
-    if (data && typeof data == "object" && !Array.isArray(data)) {
+    if (isObj(data)) {
         for (const key0 in data) {
             if (!(key0 === "age")) {
                 errors = vErrors.push(e(instancePath, "#/additionalProperties", "additionalProperties", { additionalProperty: key0 }));
             }
         }
-        if (data.age !== undefined) {
+        if (!isUndefined(data.age)) {
             let data0 = data.age;
-            if ((typeof data0 !== "string") && (data0 !== null)) {
+            if ((isStr(data0)) && (!isNull(data0))) {
                 errors = vErrors.push(e(instancePath + "/age", "#/properties/age/type", "type", { type: _constants.schema14[".properties.age.type"] }));
             }
             const res0 = await new Promise(() => false);
@@ -189,7 +195,7 @@ const formats16 = anyfy(fullFormats).double;
 const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = "", rootData = data } = {}) => {
     let vErrors: WebAjvError[] = [];
     let errors = 0;
-    if (data && typeof data == "object" && !Array.isArray(data)) {
+    if (isObj(data)) {
         if (data.lastName === undefined) {
             errors = vErrors.push(e(instancePath, "#/required", "required", { missingProperty: "lastName" }));
         }
@@ -201,9 +207,9 @@ const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = 
                 errors = vErrors.push(e(instancePath, "#/additionalProperties", "additionalProperties", { additionalProperty: key0 }));
             }
         }
-        if (data.name !== undefined) {
+        if (!isUndefined(data.name)) {
             let data0 = data.name;
-            if (typeof data0 === "string") {
+            if (isStr(data0)) {
                 if (func4(data0) > 50) {
                     errors = vErrors.push(e(instancePath + "/name", "#/properties/name/maxLength", "maxLength", { limit: 50 }));
                 }
@@ -215,9 +221,9 @@ const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = 
                 errors = vErrors.push(e(instancePath + "/name", "#/properties/name/type", "type", { type: "string" }));
             }
         }
-        if (data.lastName !== undefined) {
+        if (!isUndefined(data.lastName)) {
             let data1 = data.lastName;
-            if (typeof data1 === "string") {
+            if (isStr(data1)) {
                 if (func4(data1) > 50) {
                     errors = vErrors.push(e(instancePath + "/lastName", "#/properties/lastName/maxLength", "maxLength", { limit: 50 }));
                 }
@@ -226,12 +232,12 @@ const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = 
                 errors = vErrors.push(e(instancePath + "/lastName", "#/properties/lastName/type", "type", { type: "string" }));
             }
         }
-        if (data.anInt !== undefined) {
+        if (!isUndefined(data.anInt)) {
             let data2 = data.anInt;
-            if (!(((typeof data2 == "number") && (!(data2 % 1) && !isNaN(data2))) && (isFinite(data2)))) {
+            if (!(((isNum(data2)) && (!(data2 % 1) && !isNaN(data2))) && (isFinite(data2)))) {
                 errors = vErrors.push(e(instancePath + "/anInt", "#/properties/anInt/type", "type", { type: "integer" }));
             }
-            if ((typeof data2 == "number") && (isFinite(data2))) {
+            if ((isNum(data2)) && (isFinite(data2))) {
                 if (data2 < -2147483648 || isNaN(data2)) {
                     errors = vErrors.push(e(instancePath + "/anInt", "#/properties/anInt/minimum", "minimum", { comparison: ">=", limit: -2147483648 }));
                 }
@@ -243,12 +249,12 @@ const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = 
                 }
             }
         }
-        if (data.aLong !== undefined) {
+        if (!isUndefined(data.aLong)) {
             let data3 = data.aLong;
-            if (!(((typeof data3 == "number") && (!(data3 % 1) && !isNaN(data3))) && (isFinite(data3)))) {
+            if (!(((isNum(data3)) && (!(data3 % 1) && !isNaN(data3))) && (isFinite(data3)))) {
                 errors = vErrors.push(e(instancePath + "/aLong", "#/properties/aLong/type", "type", { type: "integer" }));
             }
-            if ((typeof data3 == "number") && (isFinite(data3))) {
+            if ((isNum(data3)) && (isFinite(data3))) {
                 if (data3 > 9223372036854776000 || isNaN(data3)) {
                     errors = vErrors.push(e(instancePath + "/aLong", "#/properties/aLong/maximum", "maximum", { comparison: "<=", limit: 9223372036854776000 }));
                 }
@@ -260,9 +266,9 @@ const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = 
                 }
             }
         }
-        if (data.aDecimal !== undefined) {
+        if (!isUndefined(data.aDecimal)) {
             let data4 = data.aDecimal;
-            if ((typeof data4 == "number") && (isFinite(data4))) {
+            if ((isNum(data4)) && (isFinite(data4))) {
                 if (data4 > 1.7976931348623157e+308 || isNaN(data4)) {
                     errors = vErrors.push(e(instancePath + "/aDecimal", "#/properties/aDecimal/maximum", "maximum", { comparison: "<=", limit: 1.7976931348623157e+308 }));
                 }
@@ -277,17 +283,17 @@ const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = 
                 errors = vErrors.push(e(instancePath + "/aDecimal", "#/properties/aDecimal/type", "type", { type: "number" }));
             }
         }
-        if (data.nested !== undefined) {
+        if (!isUndefined(data.nested)) {
             let data5 = data.nested;
-            if (data5 && typeof data5 == "object" && !Array.isArray(data5)) {
+            if (isObj(data5)) {
                 for (const key1 in data5) {
                     if (!(key1 === "age")) {
                         errors = vErrors.push(e(instancePath + "/nested", "Nested/additionalProperties", "additionalProperties", { additionalProperty: key1 }));
                     }
                 }
-                if (data5.age !== undefined) {
+                if (!isUndefined(data5.age)) {
                     let data6 = data5.age;
-                    if ((typeof data6 !== "string") && (data6 !== null)) {
+                    if ((isStr(data6)) && (!isNull(data6))) {
                         errors = vErrors.push(e(instancePath + "/nested/age", "Nested/properties/age/type", "type", { type: _constants.schema14[".properties.age.type"] }));
                     }
                     const res0 = await new Promise(() => false);
@@ -300,7 +306,7 @@ const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = 
                 errors = vErrors.push(e(instancePath + "/nested", "Nested/type", "type", { type: "object" }));
             }
         }
-        if (data.dummy !== undefined) {
+        if (!isUndefined(data.dummy)) {
             if (!(validateDummy(data.dummy, { instancePath: instancePath + "/dummy", parentData: data, parentDataProperty: "dummy", rootData }))) {
                 vErrors.push(...(validateDummy.errors || []));
                 errors = vErrors.length;

@@ -48,6 +48,7 @@ export type ValidatorStep = {
 
 export type StandaloneStep = {
     standalone: string;
+    original: string;
 } & ValidatorStep;
 
 export type OptimizedStep = {

@@ -1,13 +1,11 @@
 import { WebAjvError } from "./types";
-import { AnySchemaObject } from "ajv";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const anyfy = (u: unknown): any => u;
 
 export const isArr = (v: unknown): v is unknown[] => Array.isArray(v);
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const isObj = (v: unknown): v is any =>
+export const isObj = (v: unknown): v is Record<string, unknown> =>
     !!v && typeof v === "object" && !Array.isArray(v);
 
 export const isNum = (v: unknown): v is number => typeof v === "number";
@@ -25,7 +23,7 @@ export const e = (
     params: Record<string, unknown>,
     message?: string,
     schema?: unknown,
-    parentSchema?: AnySchemaObject,
+    parentSchema?: Record<string, unknown>,
     data?: unknown
 ): WebAjvError => {
     return {

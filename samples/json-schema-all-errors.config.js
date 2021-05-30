@@ -14,6 +14,7 @@ const options = {
     ajvOptions: {
         messages: false,
         allErrors: true,
+        $data: true,
     },
     formats: true,
     outFile: "/samples/gen/json-schema-all-errors.ts",

@@ -76,8 +76,8 @@ function resolveImport(
     declaration: VariableDeclaration,
     accesses: (PropertyAccessExpression | ElementAccessExpression)[]
 ): string | void {
-    const name = declaration.getNameNode();
-    const asVar = name.asKind(ts.SyntaxKind.Identifier);
+    const asVar = declaration.getNameNode().asKind(ts.SyntaxKind.Identifier);
+
     if (asVar) {
         const name = asVar.getText();
 

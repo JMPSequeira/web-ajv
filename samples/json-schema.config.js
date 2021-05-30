@@ -14,6 +14,7 @@ const options = {
     ajvOptions: {
         messages: false,
         allErrors: false,
+        $data: true,
     },
     formats: true,
     outFile: "/samples/gen/json-schema.ts",
