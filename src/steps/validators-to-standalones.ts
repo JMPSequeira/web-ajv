@@ -5,7 +5,6 @@ import { replaceValidateFunctionsWithNamedConstants } from "../transforms/replac
 import { replaceRequireWithImports } from "../transforms/replace-require-with-imports";
 import { saveSource } from "./utils";
 import { setTypeOnErrorCounters } from "../transforms/set-type-on-error-counters";
-import paths from "../paths/paths";
 import { declareWrappersAfterFunctions } from "../transforms/declare-wrappers-after-functions";
 import { renameSchemaConstants } from "../transforms/rename-schema-constants";
 import { removeUnusedParameters } from "../transforms/remove-unused-parameters";
@@ -59,7 +58,7 @@ export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
     sourceFile.insertText(
         0,
         `${imports.join(";\r\n")}
-import { ${innerImports.join(", ")} } from '${paths.webajv}';
+import { ${innerImports.join(", ")} } from 'web-ajv';
 export type ${step.validatorPrefix}SchemaId = ${definitions
             .map((d) => `"${d}"`)
             .join("|")};

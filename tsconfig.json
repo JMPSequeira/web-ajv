@@ -25,7 +25,8 @@
     },
     "include": [
         "src/**/*"
-, "index.d.ts"    ],
+        , "index.d.ts"    
+    ],
     "exclude": [
         "node_modules",
         "**/*.spec.ts",
