@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { validatorFactory, AjvValidationFn } from './web-ajv';
+import { validatorFactory, AjvValidationFn } from 'web-ajv';
 export type JSONSchemaSchemaId = "Nested"|"NestedAlternative"|"Top";
 
 const schemaNested = { "additionalProperties": false, "properties": { "surname": { "type": "string" }, "age": { "type": "number" }, "alternatives": { "type": "array", "items": { "$ref": "NestedAlternative" } } }, "required": ["surname"], "type": "object", "$id": "Nested" } as const;

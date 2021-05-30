@@ -1,6 +1,6 @@
 import { TransformTraversalControl } from "ts-morph";
 import ts from "typescript";
-import { getTypeNode, isIdentifier } from "../steps/utils";
+import { getTypeNode, isIdentifier, isSourceFile } from "../steps/utils";
 
 const fac = ts.factory;
 const testRegex = /^validate\d+$/;
@@ -10,7 +10,7 @@ let renames: { [x: string]: { newName: string; removableIndex: number } } = {};
 export const replaceValidateFunctionsWithNamedConstants = function (
     t: TransformTraversalControl
 ): ts.Node {
-    if (ts.isSourceFile(t.currentNode)) {
+    if (isSourceFile(t.currentNode)) {
         const source = t.currentNode;
 
         renames = getNamedDeclaration(source);

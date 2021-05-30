@@ -2,7 +2,7 @@
 import { fullFormats } from "ajv-formats/dist/formats";
 import Error0 from "ajv/dist/runtime/validation_error";
 import func4 from "ajv/dist/runtime/ucs2length"
-import { validatorFactory, anyfy, AsyncAjvValidationFn, AjvValidationFn } from './web-ajv';
+import { validatorFactory, anyfy, AsyncAjvValidationFn, AjvValidationFn } from 'web-ajv';
 export type OpenApi3SchemaId = "Dummy"|"Item"|"Nested"|"Sample";
 
 const schemaDummy = { "type": "object", "properties": { "name": { "type": ["string", "null"] }, "items": { "type": ["array", "null"], "items": { "$ref": "Item" } } }, "additionalProperties": false, "$id": "Dummy" } as const;

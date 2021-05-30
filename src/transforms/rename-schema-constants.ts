@@ -1,6 +1,10 @@
 import ts from "typescript";
 import { TransformTraversalControl } from "ts-morph";
-import { isIdentifier, isVariableStatement } from "../steps/utils";
+import {
+    isIdentifier,
+    isSourceFile,
+    isVariableStatement,
+} from "../steps/utils";
 
 const fac = ts.factory;
 let renames: { [x: string]: string } = {};
@@ -9,7 +13,7 @@ export const renameSchemaConstants = function (
 ): ts.Node {
     const node = t.currentNode;
 
-    if (ts.isSourceFile(node)) {
+    if (isSourceFile(node)) {
         renames = getNamedDeclaration(node);
         return t.visitChildren();
     } else if (isVariableStatement(node, /^schema\d+$/)) {

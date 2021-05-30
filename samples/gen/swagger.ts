@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { fullFormats } from "ajv-formats/dist/formats";
 import func0 from "ajv/dist/runtime/equal"
-import { validatorFactory, anyfy, AjvValidationFn } from './web-ajv';
+import { validatorFactory, anyfy, AjvValidationFn } from 'web-ajv';
 export type OpenApi2SchemaId = "ApiResponse"|"Category"|"Pet"|"Tag"|"Order"|"User";
 
 const schemaApiResponse = { "type": "object", "properties": { "code": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "type": { "type": "string" }, "message": { "type": "string" } }, "$id": "ApiResponse" } as const;

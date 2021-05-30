@@ -1,6 +1,10 @@
 import { TransformTraversalControl } from "ts-morph";
 import ts from "typescript";
-import { isIdentifier, isVariableStatement } from "../steps/utils";
+import {
+    isIdentifier,
+    isSourceFile,
+    isVariableStatement,
+} from "../steps/utils";
 const fac = ts.factory;
 let map: { [x: string]: string } = {};
 
@@ -9,7 +13,7 @@ export const declareWrappersAfterFunctions = (
 ): ts.Node => {
     const node = t.currentNode;
 
-    if (ts.isSourceFile(node)) {
+    if (isSourceFile(node)) {
         map = {};
         const wrapperStatements: ts.Statement[] = [];
         const statements: ts.Statement[] = [];

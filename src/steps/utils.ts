@@ -144,6 +144,10 @@ export function isIdentifier<T>(
     );
 }
 
+export function isSourceFile(node: ts.Node): node is ts.SourceFile {
+    return ts.isSourceFile(node) || node.getSourceFile() === node;
+}
+
 export function isVariableStatement<T>(
     node: ts.Node | undefined,
     test: T extends string ? T : T extends RegExp ? T : never
