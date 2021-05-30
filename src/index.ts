@@ -11,6 +11,7 @@ import {
     WebAjvValidateFn,
 } from "../index";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function anyfy(t: unknown): any {
     return t;
 }

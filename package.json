@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "test",
-    "build": "rimraf dist && tsc"
+    "build": "rimraf dist && tsc",
+    "wrap": "pnpm build && pnpm pack"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,10 @@
     "ajv",
     "validation",
     "typescript",
-    "web"
+    "web",
+    "json",
+    "jsonschema",
+    "browser"
   ],
   "author": "João Palma Sequeira",
   "license": "MIT",
