@@ -27,10 +27,10 @@
             "args": [
                 "./samples/json-schema.config",
                 "./samples/json-schema-all-errors.config",
-                // "./samples/openapi3.config",
-                // "./samples/openapi3-all-errors.config",
-                    // "./samples/swagger.config",
-                    // "./samples/swagger-all-errors.config",
+                "./samples/openapi3.config",
+                "./samples/openapi3-all-errors.config",
+                    "./samples/swagger.config",
+                    "./samples/swagger-all-errors.config",
             ]
         }
     ]

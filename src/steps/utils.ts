@@ -133,38 +133,14 @@ export function getTypeNode(typeStr: string): ts.TypeNode | undefined {
 }
 
 export function isIdentifier<T>(
-    node: ts.Node,
+    node: ts.Node | undefined,
     text: T extends string ? T : T extends RegExp ? T : never
 ): node is ts.Identifier & { text: T extends string ? T : string } {
     return (
+        !!node &&
         ts.isIdentifier(node) &&
         ((typeof text === "string" && node.text === text) ||
             (text instanceof RegExp && text.test(node.text)))
-    );
-}
-
-export function isSingleVariableDeclaration(
-    node: ts.Node
-): node is ts.VariableDeclarationList & {
-    declarations: ts.NodeArray<ts.VariableDeclaration> & {
-        length: 1;
-        0: ts.VariableDeclaration;
-    };
-} {
-    return !!(
-        ts.isVariableDeclarationList(node) &&
-        node.declarations.length === 1 &&
-        node.declarations[0]
-    );
-}
-
-export function createSafeVErrors() {
-    return ts.factory.createParenthesizedExpression(
-        ts.factory.createBinaryExpression(
-            ts.factory.createIdentifier("vErrors"),
-            ts.SyntaxKind.BarBarEqualsToken,
-            ts.factory.createArrayLiteralExpression()
-        )
     );
 }
 

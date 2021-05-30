@@ -3,8 +3,8 @@ import { fullFormats } from "ajv-formats/dist/formats";
 import func0 from "ajv/dist/runtime/equal"
 import { validatorFactory, anyfy, AjvValidationFn } from './web-ajv';
 export type OpenApi2SchemaId = "ApiResponse"|"Category"|"Pet"|"Tag"|"Order"|"User";
-            
-const schema11 = { "type": "object", "properties": { "code": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "type": { "type": "string" }, "message": { "type": "string" } }, "$id": "ApiResponse" };
+
+const schemaApiResponse = { "type": "object", "properties": { "code": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "type": { "type": "string" }, "message": { "type": "string" } }, "$id": "ApiResponse" } as const;
 const formats0 = anyfy(fullFormats).int32;
 const validateApiResponse: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
     ;
@@ -79,7 +79,7 @@ const validateApiResponse: AjvValidationFn = (data: any, { instancePath = "", pa
     validateApiResponse.errors = vErrors;
     return errors === 0;
 };
-const schema12 = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "name": { "type": "string" } }, "$id": "Category" };
+const schemaCategory = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "name": { "type": "string" } }, "$id": "Category" } as const;
 const formats2 = anyfy(fullFormats).int64;
 const validateCategory: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
     ;
@@ -141,8 +141,8 @@ const validateCategory: AjvValidationFn = (data: any, { instancePath = "", paren
     validateCategory.errors = vErrors;
     return errors === 0;
 };
-const schema13 = { "type": "object", "required": ["name", "photoUrls"], "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "category": { "$ref": "Category" }, "name": { "type": "string" }, "photoUrls": { "type": "array", "items": { "type": "string" } }, "tags": { "type": "array", "items": { "$ref": "Tag" } }, "status": { "type": "string", "description": "pet status in the store", "enum": ["available", "pending", "sold"] } }, "$id": "Pet" };
-const schema15 = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "name": { "type": "string" } }, "$id": "Tag" };
+const schemaPet = { "type": "object", "required": ["name", "photoUrls"], "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "category": { "$ref": "Category" }, "name": { "type": "string" }, "photoUrls": { "type": "array", "items": { "type": "string" } }, "tags": { "type": "array", "items": { "$ref": "Tag" } }, "status": { "type": "string", "description": "pet status in the store", "enum": ["available", "pending", "sold"] } }, "$id": "Pet" } as const;
+const schemaTag = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "name": { "type": "string" } }, "$id": "Tag" } as const;
 const validatePet: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
     ;
     let vErrors = null;
@@ -382,7 +382,7 @@ const validatePet: AjvValidationFn = (data: any, { instancePath = "", parentData
                                             return false;
                                         }
                                         if (!(((data11 === "available") || (data11 === "pending")) || (data11 === "sold"))) {
-                                            validatePet.errors = [{ instancePath: instancePath + "/status", schemaPath: "#/properties/status/enum", keyword: "enum", params: { allowedValues: schema13.properties.status.enum } }];
+                                            validatePet.errors = [{ instancePath: instancePath + "/status", schemaPath: "#/properties/status/enum", keyword: "enum", params: { allowedValues: schemaPet.properties.status.enum } }];
                                             return false;
                                         }
                                         var valid0 = _errs25 === errors;
@@ -465,7 +465,7 @@ const validateTag: AjvValidationFn = (data: any, { instancePath = "", parentData
     validateTag.errors = vErrors;
     return errors === 0;
 };
-const schema17 = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "petId": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "quantity": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "shipDate": { "type": "string", "format": "date-time" }, "status": { "type": "string", "description": "Order Status", "enum": ["placed", "approved", "delivered"] }, "complete": { "type": "boolean" } }, "$id": "Order" };
+const schemaOrder = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "petId": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "quantity": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "shipDate": { "type": "string", "format": "date-time" }, "status": { "type": "string", "description": "Order Status", "enum": ["placed", "approved", "delivered"] }, "complete": { "type": "boolean" } }, "$id": "Order" } as const;
 const formats18 = anyfy(fullFormats)["date-time"];
 const validateOrder: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
     ;
@@ -603,7 +603,7 @@ const validateOrder: AjvValidationFn = (data: any, { instancePath = "", parentDa
                                     return false;
                                 }
                                 if (!(((data4 === "placed") || (data4 === "approved")) || (data4 === "delivered"))) {
-                                    validateOrder.errors = [{ instancePath: instancePath + "/status", schemaPath: "#/properties/status/enum", keyword: "enum", params: { allowedValues: schema17.properties.status.enum } }];
+                                    validateOrder.errors = [{ instancePath: instancePath + "/status", schemaPath: "#/properties/status/enum", keyword: "enum", params: { allowedValues: schemaOrder.properties.status.enum } }];
                                     return false;
                                 }
                                 var valid0 = _errs9 === errors;
@@ -637,7 +637,7 @@ const validateOrder: AjvValidationFn = (data: any, { instancePath = "", parentDa
     validateOrder.errors = vErrors;
     return errors === 0;
 };
-const schema18 = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "username": { "type": "string" }, "firstName": { "type": "string" }, "lastName": { "type": "string" }, "email": { "type": "string" }, "password": { "type": "string" }, "phone": { "type": "string" }, "userStatus": { "type": "integer", "format": "int32", "description": "User Status", "minimum": -2147483648, "maximum": 2147483647 } }, "$id": "User" };
+const schemaUser = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "username": { "type": "string" }, "firstName": { "type": "string" }, "lastName": { "type": "string" }, "email": { "type": "string" }, "password": { "type": "string" }, "phone": { "type": "string" }, "userStatus": { "type": "integer", "format": "int32", "description": "User Status", "minimum": -2147483648, "maximum": 2147483647 } }, "$id": "User" } as const;
 const validateUser: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
     ;
     let vErrors = null;
@@ -798,5 +798,9 @@ const validateUser: AjvValidationFn = (data: any, { instancePath = "", parentDat
     return errors === 0;
 };
 
-export const OpenApi2Validator = validatorFactory({ApiResponse: validateApiResponse,Category: validateCategory,Pet: validatePet,Tag: validateTag,Order: validateOrder,User: validateUser}, false);
-    
+export const OpenApi2Validator = validatorFactory({ApiResponse: {validator:validateApiResponse, schema: schemaApiResponse},
+Category: {validator:validateCategory, schema: schemaCategory},
+Pet: {validator:validatePet, schema: schemaPet},
+Tag: {validator:validateTag, schema: schemaTag},
+Order: {validator:validateOrder, schema: schemaOrder},
+User: {validator:validateUser, schema: schemaUser}}, false);
