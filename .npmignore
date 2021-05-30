@@ -1,3 +1,4 @@
+src/
 .vscode/
 **/*.js.map
 .gitignore
