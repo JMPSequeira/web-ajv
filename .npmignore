@@ -4,3 +4,6 @@ src/
 .gitignore
 samples/
 web-ajv.config.js
+**/*.tgz
+gen-validators/
+

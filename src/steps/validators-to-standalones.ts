@@ -8,6 +8,7 @@ import { setTypeOnErrorCounters } from "../transforms/set-type-on-error-counters
 import paths from "../paths/paths";
 import { declareWrappersAfterFunctions } from "../transforms/declare-wrappers-after-functions";
 import { renameSchemaConstants } from "../transforms/rename-schema-constants";
+import { removeUnusedParameters } from "../transforms/remove-unused-parameters";
 
 export function validatorsToStandalone(
     ...steps: ValidatorStep[]
@@ -36,6 +37,7 @@ export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
     sourceFile.transform(replaceValidateFunctionsWithNamedConstants);
     sourceFile.transform(setTypeOnErrorCounters);
     sourceFile.transform(declareWrappersAfterFunctions);
+    sourceFile.transform(removeUnusedParameters);
 
     const imports: string[] = replaceRequireWithImports(sourceFile);
     const innerImports: string[] = ["validatorFactory"];
@@ -78,8 +80,6 @@ export const ${step.validatorPrefix}Validator = validatorFactory({${Object.keys(
             .join(",\r\n")}}, ${step.isAsync ? "true" : "false"});
 `
     );
-
-    sourceFile.fixUnusedIdentifiers();
 
     saveSource(sourceFile);
 

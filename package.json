@@ -9,8 +9,7 @@
   },
   "scripts": {
     "test": "test",
-    "build": "rimraf dist && tsc",
-    "web": "web-ajv"
+    "build": "rimraf dist && tsc"
   },
   "repository": {
     "type": "git",

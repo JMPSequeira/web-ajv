@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { fullFormats } from "ajv-formats/dist/formats";
+import func0 from "ajv/dist/runtime/equal"
 import { validatorFactory, anyfy, AjvValidationFn } from './web-ajv';
 export type OpenApi2SchemaId = "ApiResponse"|"Category"|"Pet"|"Tag"|"Order"|"User";
 

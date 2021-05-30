@@ -105,3 +105,4 @@ dist
 
 pnpm-lock.yaml
 /web-ajv.config.js
+/gen-validators
