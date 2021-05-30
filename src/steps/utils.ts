@@ -183,7 +183,7 @@ export function isVariableStatement<T>(
     };
 } {
     if (node && ts.isVariableStatement(node)) {
-        const declaration = node.declarationList.declarations[0];
+        const declaration = node.declarationList?.declarations[0];
         if (declaration) {
             if (test) {
                 const name = declaration.name.getText();
