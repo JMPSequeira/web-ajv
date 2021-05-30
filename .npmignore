@@ -6,7 +6,7 @@ samples/
 web-ajv.config.js
 **/*.tgz
 gen-validators/
-ts-config.json
+tsconfig.json
 .editorconfig
 .eslintrc
 .gitignore
