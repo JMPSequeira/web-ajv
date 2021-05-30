@@ -1,6 +1,6 @@
 {
   "name": "web-ajv",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "An ajv wrapper to generate a concise front-end validator.",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
