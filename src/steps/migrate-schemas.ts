@@ -2,7 +2,6 @@ import { OpenAPIV2, OpenAPIV3 } from "openapi-types";
 import toDraft4 from "@openapi-contrib/openapi-schema-to-json-schema";
 import {
     MigratedStep,
-    NamingFormat,
     RequiredEndpointOptions,
     ResolvedStep,
     UndefinedSchema,
@@ -12,6 +11,7 @@ import { AnySchemaObject } from "ajv";
 import { getNameFromSource, traverseObject } from "./utils";
 import { JSONSchema4, JSONSchema7 } from "json-schema";
 import migrate = require("json-schema-migrate");
+import { NamingFormat } from "../..";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const swagger2openapi = require("swagger2openapi");
 

@@ -2,13 +2,16 @@ import {
     CommonOptions,
     SchemaOptions,
     ConfigSchema,
-    RequiredEndpointOptions,
     ValidatorOptions,
     EndpointOptions,
     Options,
+    ExtendedAjvOptions,
+} from "../../index";
+
+import {
+    RequiredEndpointOptions,
     ParsedOptions,
     RequiredValidatorOptions,
-    ExtendedAjvOptions,
 } from "./types";
 import path from "path";
 import { Options as AjvOptions } from "ajv";
