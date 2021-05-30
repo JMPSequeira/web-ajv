@@ -1,12 +1,11 @@
 /* eslint-disable */
 import { fullFormats } from "ajv-formats/dist/formats";
-import func0 from "ajv/dist/runtime/equal"
 import { validatorFactory, anyfy, AjvValidationFn } from './web-ajv';
 export type OpenApi2SchemaId = "ApiResponse"|"Category"|"Pet"|"Tag"|"Order"|"User";
 
 const schemaApiResponse = { "type": "object", "properties": { "code": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "type": { "type": "string" }, "message": { "type": "string" } }, "$id": "ApiResponse" } as const;
 const formats0 = anyfy(fullFormats).int32;
-const validateApiResponse: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateApiResponse: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -81,7 +80,7 @@ const validateApiResponse: AjvValidationFn = (data: any, { instancePath = "", pa
 };
 const schemaCategory = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "name": { "type": "string" } }, "$id": "Category" } as const;
 const formats2 = anyfy(fullFormats).int64;
-const validateCategory: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateCategory: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -143,7 +142,7 @@ const validateCategory: AjvValidationFn = (data: any, { instancePath = "", paren
 };
 const schemaPet = { "type": "object", "required": ["name", "photoUrls"], "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "category": { "$ref": "Category" }, "name": { "type": "string" }, "photoUrls": { "type": "array", "items": { "type": "string" } }, "tags": { "type": "array", "items": { "$ref": "Tag" } }, "status": { "type": "string", "description": "pet status in the store", "enum": ["available", "pending", "sold"] } }, "$id": "Pet" } as const;
 const schemaTag = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "name": { "type": "string" } }, "$id": "Tag" } as const;
-const validatePet: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validatePet: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -405,7 +404,7 @@ const validatePet: AjvValidationFn = (data: any, { instancePath = "", parentData
     validatePet.errors = vErrors;
     return errors === 0;
 };
-const validateTag: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateTag: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -467,7 +466,7 @@ const validateTag: AjvValidationFn = (data: any, { instancePath = "", parentData
 };
 const schemaOrder = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "petId": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "quantity": { "type": "integer", "format": "int32", "minimum": -2147483648, "maximum": 2147483647 }, "shipDate": { "type": "string", "format": "date-time" }, "status": { "type": "string", "description": "Order Status", "enum": ["placed", "approved", "delivered"] }, "complete": { "type": "boolean" } }, "$id": "Order" } as const;
 const formats18 = anyfy(fullFormats)["date-time"];
-const validateOrder: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateOrder: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -638,7 +637,7 @@ const validateOrder: AjvValidationFn = (data: any, { instancePath = "", parentDa
     return errors === 0;
 };
 const schemaUser = { "type": "object", "properties": { "id": { "type": "integer", "format": "int64", "minimum": -9223372036854776000, "maximum": 9223372036854776000 }, "username": { "type": "string" }, "firstName": { "type": "string" }, "lastName": { "type": "string" }, "email": { "type": "string" }, "password": { "type": "string" }, "phone": { "type": "string" }, "userStatus": { "type": "integer", "format": "int32", "description": "User Status", "minimum": -2147483648, "maximum": 2147483647 } }, "$id": "User" } as const;
-const validateUser: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateUser: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;

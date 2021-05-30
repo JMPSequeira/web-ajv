@@ -79,6 +79,8 @@ export const ${step.validatorPrefix}Validator = validatorFactory({${Object.keys(
 `
     );
 
+    sourceFile.fixUnusedIdentifiers();
+
     saveSource(sourceFile);
 
     return {

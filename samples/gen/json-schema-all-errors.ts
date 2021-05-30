@@ -4,7 +4,7 @@ export type JSONSchemaSchemaId = "Nested"|"NestedAlternative"|"Top";
 
 const schemaNested = { "additionalProperties": false, "properties": { "surname": { "type": "string" }, "age": { "type": "number" }, "alternatives": { "type": "array", "items": { "$ref": "NestedAlternative" } } }, "required": ["surname"], "type": "object", "$id": "Nested" } as const;
 const schemaNestedAlternative = { "additionalProperties": false, "properties": { "address": { "type": "string" } }, "required": ["address"], "type": "object", "$id": "NestedAlternative" } as const;
-const validateNested: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateNested: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -135,7 +135,7 @@ const validateNested: AjvValidationFn = (data: any, { instancePath = "", parentD
     validateNested.errors = vErrors;
     return errors === 0;
 };
-const validateNestedAlternative: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateNestedAlternative: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -189,7 +189,7 @@ const validateNestedAlternative: AjvValidationFn = (data: any, { instancePath = 
     return errors === 0;
 };
 const schemaTop = { "additionalProperties": false, "properties": { "age": { "type": "number", "minimum": { "$data": "1/nested1/age" } }, "name": { "type": "string" }, "self": { "$ref": "Top" }, "nested1": { "$ref": "Nested" }, "nested": { "anyOf": [{ "$ref": "Nested" }, { "type": "array", "items": { "$ref": "NestedAlternative" } }] }, "nestedAll": { "allOf": [{ "$ref": "Nested" }, { "type": "array", "items": { "$ref": "NestedAlternative" } }] }, "nestedOne": { "oneOf": [{ "$ref": "Nested" }, { "type": "array", "items": { "$ref": "NestedAlternative" } }] } }, "required": ["name", "age", "nested"], "type": "object", "$id": "Top" } as const;
-const validateTop: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateTop: AjvValidationFn = (data: any, { instancePath = "", rootData = data } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;

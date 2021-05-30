@@ -3,3 +3,4 @@ src/
 **/*.js.map
 .gitignore
 samples/
+web-ajv.config.js

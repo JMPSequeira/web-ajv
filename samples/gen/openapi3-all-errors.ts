@@ -10,7 +10,7 @@ const schemaItem = { "required": ["deliveredOn", "emailAddress", "id"], "type": 
 const formats0 = /^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
 const formats2 = anyfy(fullFormats)["date-time"];
 const formats4 = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
-const validateDummy: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -202,7 +202,7 @@ const validateDummy: AjvValidationFn = (data: any, { instancePath = "", parentDa
     validateDummy.errors = vErrors;
     return errors === 0;
 };
-const validateItem: AjvValidationFn = (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -339,7 +339,7 @@ const validateItem: AjvValidationFn = (data: any, { instancePath = "", parentDat
     return errors === 0;
 };
 const schemaNested = { "type": "object", "properties": { "age": { "type": ["string", "null"], "timeout": { "time": 123 } } }, "additionalProperties": false, "$id": "Nested", "$async": true } as const;
-const validateNested: AsyncAjvValidationFn = async (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateNested: AsyncAjvValidationFn = async (data: any, { instancePath = "" } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
@@ -402,7 +402,7 @@ const schemaSample = { "required": ["lastName", "name"], "type": "object", "prop
 const formats12 = anyfy(fullFormats).int32;
 const formats14 = anyfy(fullFormats).int64;
 const formats16 = anyfy(fullFormats).double;
-const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = "", parentData, parentDataProperty, rootData = data } = {}) => {
+const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = "", rootData = data } = {}) => {
     ;
     let vErrors = null;
     let errors = 0;
