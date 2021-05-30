@@ -1,6 +1,6 @@
 {
   "name": "web-ajv",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "An ajv wrapper to generate a concise front-end validator.",
   "main": "./dist/index.js",
   "types": "./index.d.ts",
@@ -45,8 +45,8 @@
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^2.1.0",
     "ajv-keywords": "^5.0.0"
-},
-"dependencies": {
+  },
+  "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.0.7",
     "@apidevtools/swagger-parser": "^10.0.2",
     "@openapi-contrib/openapi-schema-to-json-schema": "^3.1.0",
