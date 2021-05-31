@@ -28,7 +28,10 @@ export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
 
     const sourceFile = project.createSourceFile(
         step.outFile,
-        original.substr('"use strict;"'.length)
+        original.substr('"use strict;"'.length),
+        {
+            overwrite: false,
+        }
     );
 
     sourceFile.transform(renameSchemaConstants);
