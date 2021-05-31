@@ -8,6 +8,7 @@ import { setTypeOnErrorCounters } from "../transforms/set-type-on-error-counters
 import { declareWrappersAfterFunctions } from "../transforms/declare-wrappers-after-functions";
 import { renameSchemaConstants } from "../transforms/rename-schema-constants";
 import { removeUnusedParameters } from "../transforms/remove-unused-parameters";
+import { setTypeAnyOnVErrors } from "../transforms/set-type-any-on-verrors";
 
 export function validatorsToStandalone(
     ...steps: ValidatorStep[]
@@ -16,7 +17,6 @@ export function validatorsToStandalone(
 }
 
 export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
-    
     const definitions = Object.keys(step.validator.schemas).filter(
         (s) => !step.validator.schemas[s]?.meta
     );
@@ -33,6 +33,7 @@ export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
 
     sourceFile.transform(renameSchemaConstants);
     sourceFile.transform(replaceValidateFunctionsWithNamedConstants);
+    sourceFile.transform(setTypeAnyOnVErrors);
     sourceFile.transform(setTypeOnErrorCounters);
     sourceFile.transform(declareWrappersAfterFunctions);
     sourceFile.transform(removeUnusedParameters);
@@ -40,9 +41,9 @@ export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
     const imports: string[] = replaceRequireWithImports(sourceFile);
     const innerImports: string[] = ["validatorFactory"];
 
-    if (imports.length) {
-        innerImports.push("anyfy");
-    }
+    // if (imports.length) {
+    //     innerImports.push("anyfy");
+    // }
 
     if (step.isAsync) {
         innerImports.push("AsyncAjvValidationFn");

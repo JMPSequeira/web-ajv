@@ -142,6 +142,6 @@ function resolveImport(
 
         declaration
             .getInitializer()
-            ?.replaceWithText(`anyfy(${importName})${propertyChain}`);
+            ?.replaceWithText(`(${importName} as any)${propertyChain}`);
     }
 }

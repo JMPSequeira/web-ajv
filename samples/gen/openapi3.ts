@@ -2,17 +2,17 @@
 import { fullFormats } from "ajv-formats/dist/formats";
 import Error0 from "ajv/dist/runtime/validation_error";
 import func4 from "ajv/dist/runtime/ucs2length"
-import { validatorFactory, anyfy, AsyncAjvValidationFn, AjvValidationFn } from 'web-ajv';
+import { validatorFactory, AsyncAjvValidationFn, AjvValidationFn } from 'web-ajv';
 export type OpenApi3SchemaId = "Dummy"|"Item"|"Nested"|"Sample";
 
 const schemaDummy = { "type": "object", "properties": { "name": { "type": ["string", "null"] }, "items": { "type": ["array", "null"], "items": { "$ref": "Item" } } }, "additionalProperties": false, "$id": "Dummy" } as const;
 const schemaItem = { "required": ["deliveredOn", "emailAddress", "id"], "type": "object", "properties": { "id": { "type": "string", "format": "uuid" }, "deliveredOn": { "type": "string", "format": "date-time" }, "emailAddress": { "type": "string", "format": "email" } }, "additionalProperties": false, "$id": "Item" } as const;
 const formats0 = /^(?:urn:uuid:)?[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i;
-const formats2 = anyfy(fullFormats)["date-time"];
+const formats2 = (fullFormats as any)["date-time"];
 const formats4 = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i;
 const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
-    let vErrors = null;
+    let vErrors: any = null;
     let errors = 0;
     if (errors === 0) {
         if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -173,7 +173,7 @@ const validateDummy: AjvValidationFn = (data: any, { instancePath = "" } = {}) =
 };
 const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) => {
     ;
-    let vErrors = null;
+    let vErrors: any = null;
     let errors = 0;
     if (errors === 0) {
         if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -276,7 +276,7 @@ const validateItem: AjvValidationFn = (data: any, { instancePath = "" } = {}) =>
 const schemaNested = { "type": "object", "properties": { "age": { "type": ["string", "null"], "timeout": { "time": 123 } } }, "additionalProperties": false, "$id": "Nested", "$async": true } as const;
 const validateNested: AsyncAjvValidationFn = async (data: any, { instancePath = "" } = {}) => {
     ;
-    let vErrors = null;
+    let vErrors: any = null;
     let errors = 0;
     if (errors === 0) {
         if (data && typeof data == "object" && !Array.isArray(data)) {
@@ -312,12 +312,12 @@ const validateNested: AsyncAjvValidationFn = async (data: any, { instancePath = 
     }
 };
 const schemaSample = { "required": ["lastName", "name"], "type": "object", "properties": { "name": { "maxLength": 50, "minLength": 1, "type": "string" }, "lastName": { "maxLength": 50, "type": "string" }, "anInt": { "exclusiveMaximum": 50, "type": "integer", "format": "int32", "minimum": -2147483648 }, "aLong": { "exclusiveMinimum": 50, "type": "integer", "format": "int64", "maximum": 9223372036854776000 }, "aDecimal": { "type": "number", "format": "double", "minimum": -1.7976931348623157e+308, "maximum": 1.7976931348623157e+308 }, "nested": { "$ref": "Nested" }, "dummy": { "$ref": "Dummy" } }, "additionalProperties": false, "$id": "Sample", "$async": true } as const;
-const formats12 = anyfy(fullFormats).int32;
-const formats14 = anyfy(fullFormats).int64;
-const formats16 = anyfy(fullFormats).double;
+const formats12 = (fullFormats as any).int32;
+const formats14 = (fullFormats as any).int64;
+const formats16 = (fullFormats as any).double;
 const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = "", rootData = data } = {}) => {
     ;
-    let vErrors = null;
+    let vErrors: any = null;
     let errors = 0;
     if (errors === 0) {
         if (data && typeof data == "object" && !Array.isArray(data)) {
