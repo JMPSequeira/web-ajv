@@ -84,12 +84,10 @@ function asyncValidatorFactory<Key extends string>(
                 });
         }
 
-        return new Promise(() => {
-            return {
-                success: result,
-                errors: (validateFn as AjvValidationFn).errors,
-                validated: instance,
-            };
+        return Promise.resolve({
+            success: result,
+            errors: (validateFn as AjvValidationFn).errors,
+            validated: instance,
         });
     };
 }

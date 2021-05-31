@@ -532,7 +532,7 @@ const validateSample: AsyncAjvValidationFn = async (data: any, { instancePath = 
     }
 };
 
-export const OpenApi3Validator = validatorFactory({Dummy: {validator:validateDummy, schema: schemaDummy},
+export const OpenApi3Validator = validatorFactory<OpenApi3SchemaId,true>({Dummy: {validator:validateDummy, schema: schemaDummy},
 Item: {validator:validateItem, schema: schemaItem},
 Nested: {validator:validateNested, schema: schemaNested},
 Sample: {validator:validateSample, schema: schemaSample}}, true);

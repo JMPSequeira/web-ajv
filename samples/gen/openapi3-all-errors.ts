@@ -1064,7 +1064,7 @@ const validateSample: AsyncAjvValidationFn = async (
     }
 };
 
-export const OpenApi3Validator = validatorFactory(
+export const OpenApi3Validator = validatorFactory<OpenApi3SchemaId, true>(
     {
         Dummy: { validator: validateDummy, schema: schemaDummy },
         Item: { validator: validateItem, schema: schemaItem },

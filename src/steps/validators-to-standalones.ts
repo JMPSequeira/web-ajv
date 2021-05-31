@@ -41,10 +41,6 @@ export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
     const imports: string[] = replaceRequireWithImports(sourceFile);
     const innerImports: string[] = ["validatorFactory"];
 
-    // if (imports.length) {
-    //     innerImports.push("anyfy");
-    // }
-
     if (step.isAsync) {
         innerImports.push("AsyncAjvValidationFn");
     }
@@ -54,29 +50,27 @@ export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
     }
 
     saveSource(sourceFile);
-
+    const schemaId = `${step.validatorPrefix}SchemaId`;
     sourceFile.insertText(
         0,
         `${imports.join(";\r\n")}
 import { ${innerImports.join(", ")} } from 'web-ajv';
-export type ${step.validatorPrefix}SchemaId = ${definitions
-            .map((d) => `"${d}"`)
-            .join("|")};
+export type ${schemaId} = ${definitions.map((d) => `"${d}"`).join("|")};
 
 `
     );
     sourceFile.insertText(
         sourceFile.getEnd(),
         `
-export const ${step.validatorPrefix}Validator = validatorFactory({${Object.keys(
-            validatorMap
-        )
+export const ${step.validatorPrefix}Validator = validatorFactory<${schemaId},${
+            step.isAsync
+        }>({${Object.keys(validatorMap)
             .map((k) => {
                 const schema = k.substring("validate".length);
 
                 return `${schema}: {validator:${k}, schema: ${`schema${schema}`}}`;
             })
-            .join(",\r\n")}}, ${step.isAsync ? "true" : "false"});
+            .join(",\r\n")}}, ${step.isAsync});
 `
     );
 

@@ -798,7 +798,7 @@ const validateUser: AjvValidationFn = (data: any, { instancePath = "" } = {}) =>
     return errors === 0;
 };
 
-export const OpenApi2Validator = validatorFactory({ApiResponse: {validator:validateApiResponse, schema: schemaApiResponse},
+export const OpenApi2Validator = validatorFactory<OpenApi2SchemaId,false>({ApiResponse: {validator:validateApiResponse, schema: schemaApiResponse},
 Category: {validator:validateCategory, schema: schemaCategory},
 Pet: {validator:validatePet, schema: schemaPet},
 Tag: {validator:validateTag, schema: schemaTag},
