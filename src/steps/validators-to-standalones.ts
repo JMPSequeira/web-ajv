@@ -16,11 +16,10 @@ export function validatorsToStandalone(
 }
 
 export function validatorToStandalone(step: ValidatorStep): StandaloneStep {
-    //Filter out meta schemas
-    const definitions = Object.keys(step.validator.schemas).filter((s) =>
-        /^[a-zA-Z_$][a-zA-Z_0-9$]*$/.test(s)
+    
+    const definitions = Object.keys(step.validator.schemas).filter(
+        (s) => !step.validator.schemas[s]?.meta
     );
-
     const validatorMap = getValidatorMap(definitions);
 
     const original = standaloneCode(step.validator, validatorMap);
