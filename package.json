@@ -10,7 +10,9 @@
   "scripts": {
     "test": "test",
     "build": "rimraf dist && tsc",
-    "wrap": "pnpm build && pnpm pack"
+    "wrap-patch": "pnpm build && pnpm version patch && pnpm publish",
+    "wrap-minor": "pnpm build && pnpm version minor && pnpm publish",
+    "wrap-major": "pnpm build && pnpm version major && pnpm publish",
   },
   "repository": {
     "type": "git",
